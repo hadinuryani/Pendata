@@ -1,0 +1,55 @@
+Traceback (most recent call last):
+  File "C:\Users\AHMAD HADI\AppData\Local\Programs\Python\Python314\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+    ~~~~~~~~~^
+        nb,
+        ^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "C:\Users\AHMAD HADI\AppData\Local\Programs\Python\Python314\Lib\site-packages\nbclient\client.py", line 1323, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AHMAD HADI\AppData\Roaming\Python\Python314\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\AHMAD HADI\AppData\Local\Programs\Python\Python314\Lib\asyncio\base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "C:\Users\AHMAD HADI\AppData\Local\Programs\Python\Python314\Lib\site-packages\nbclient\client.py", line 709, in async_execute
+    await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "C:\Users\AHMAD HADI\AppData\Local\Programs\Python\Python314\Lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\AHMAD HADI\AppData\Local\Programs\Python\Python314\Lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+iris_raw = load_iris()
+df = pd.DataFrame(
+    iris_raw.data,
+    columns=iris_raw.feature_names
+)
+df['species'] = pd.Categorical.from_codes(
+    iris_raw.target, iris_raw.target_names
+)
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mNameError[39m                                 Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[3][39m[32m, line 1[39m
+[32m----> [39m[32m1[39m iris_raw = [43mload_iris[49m()
+[32m      2[39m df = pd.DataFrame(
+[32m      3[39m     iris_raw.data,
+[32m      4[39m     columns=iris_raw.feature_names
+[32m      5[39m )
+[32m      6[39m df[[33m'[39m[33mspecies[39m[33m'[39m] = pd.Categorical.from_codes(
+[32m      7[39m     iris_raw.target, iris_raw.target_names
+[32m      8[39m )
+
+[31mNameError[39m: name 'load_iris' is not defined
+
