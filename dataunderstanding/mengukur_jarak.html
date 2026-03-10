@@ -1,0 +1,949 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Mengukur Jarak Antar Data &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dataunderstanding/mengukur_jarak';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Distance" href="distance.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.JPG" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="../_static/logo.JPG" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Penambangan Data IF 4B
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../businessunderstanding.html">Business Understanding</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="dataunderstanding.html">Data Understanding</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="eksplorasi_data_iris.html">Eksplorasi Data Iris</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iris.html">Distence Iris</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="distance.html">Distance</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Mengukur Jarak Antar Data</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdataunderstanding/mengukur_jarak.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/dataunderstanding/mengukur_jarak.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Mengukur Jarak Antar Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary">1. Binary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nominal-kategorikal">2. Nominal (Kategorikal)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ordinal">3. Ordinal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerik">4. Numerik</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#campuran-mixed">5. Campuran (Mixed)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="mengukur-jarak-antar-data">
+<h1>Mengukur Jarak Antar Data<a class="headerlink" href="#mengukur-jarak-antar-data" title="Link to this heading">#</a></h1>
+<p>Mengukur jarak (dissimilarity) antar dua objek data dari dataset Titanic berdasarkan tipe datanya masing-masing.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial.distance</span><span class="w"> </span><span class="kn">import</span> <span class="n">jaccard</span><span class="p">,</span> <span class="n">euclidean</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../assets/train.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Allen, Mr. William Henry</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>373450</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<hr class="docutils" />
+<section id="binary">
+<h2>1. Binary<a class="headerlink" href="#binary" title="Link to this heading">#</a></h2>
+<p>Menghitung jarak data binary beberapa sampel dari data di atas.</p>
+<p>Dari data di atas, fitur dengan tipe data binary adalah <code class="docutils literal notranslate"><span class="pre">Survived</span></code>. Fitur ini hanya memiliki dua nilai yaitu <code class="docutils literal notranslate"><span class="pre">0</span></code> (tidak selamat) dan <code class="docutils literal notranslate"><span class="pre">1</span></code> (selamat).</p>
+<p>Karena <code class="docutils literal notranslate"><span class="pre">Survived</span></code> merupakan <strong>asymmetric binary</strong> (nilai 1 lebih bermakna), maka digunakan <strong>Jaccard Distance</strong>:</p>
+<div class="math notranslate nohighlight">
+\[d(i,j) = \frac{r + s}{q + r + s}\]</div>
+<ul class="simple">
+<li><p><strong>q</strong> = keduanya bernilai 1</p></li>
+<li><p><strong>r</strong> = i = 0, j = 1</p></li>
+<li><p><strong>s</strong> = i = 1, j = 0</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binary_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">binary_cols</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">binary_cols</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Row 1 - Survived: </span><span class="si">{</span><span class="n">p1</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Row 2 - Survived: </span><span class="si">{</span><span class="n">p2</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="n">jaccard_distance</span> <span class="o">=</span> <span class="n">jaccard</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jaccard Distance: </span><span class="si">{</span><span class="n">jaccard_distance</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Row 1 - Survived: 0
+Row 2 - Survived: 1
+
+Jaccard Distance: 1.0000
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>Catatan:</strong> Pada implementasi di atas, data yang digunakan adalah baris pertama dan kedua. Row 1 tidak selamat (0) dan Row 2 selamat (1), sehingga jaraknya bernilai <strong>1.0</strong> (maksimum / paling berbeda).</p>
+</div></blockquote>
+</section>
+<hr class="docutils" />
+<section id="nominal-kategorikal">
+<h2>2. Nominal (Kategorikal)<a class="headerlink" href="#nominal-kategorikal" title="Link to this heading">#</a></h2>
+<p>Menghitung jarak data nominal beberapa sampel dari data di atas.</p>
+<p>Pada data di atas, yang dihitung hanya atribut dengan tipe data nominal, selain itu diabaikan.</p>
+<p>Atribut yang dihitung adalah <code class="docutils literal notranslate"><span class="pre">Sex</span></code> dan <code class="docutils literal notranslate"><span class="pre">Embarked</span></code>, menggunakan <strong>Simple Matching</strong>:</p>
+<div class="math notranslate nohighlight">
+\[d(i,j) = \frac{p - m}{p}\]</div>
+<ul class="simple">
+<li><p><strong>p</strong> = jumlah atribut nominal</p></li>
+<li><p><strong>m</strong> = jumlah atribut yang nilainya sama</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nominal_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="s1">&#39;Embarked&#39;</span><span class="p">]</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">nominal_cols</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">nominal_cols</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Row 1 → Sex: </span><span class="si">{</span><span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, Embarked: </span><span class="si">{</span><span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Row 2 → Sex: </span><span class="si">{</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, Embarked: </span><span class="si">{</span><span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">p1</span> <span class="o">!=</span> <span class="n">p2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Simple Matching Distance: </span><span class="si">{</span><span class="n">distance</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Row 1 → Sex: male, Embarked: S
+Row 2 → Sex: female, Embarked: C
+
+Simple Matching Distance: 1.0000
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>Catatan:</strong> Pada implementasi di atas, data yang digunakan adalah baris pertama dan kedua. Sex berbeda (male vs female) dan Embarked berbeda (S vs C), sehingga jaraknya bernilai <strong>1.0</strong>.</p>
+</div></blockquote>
+</section>
+<hr class="docutils" />
+<section id="ordinal">
+<h2>3. Ordinal<a class="headerlink" href="#ordinal" title="Link to this heading">#</a></h2>
+<p>Menghitung jarak data ordinal beberapa sampel dari data di atas.</p>
+<p>Fitur dengan tipe data ordinal adalah <code class="docutils literal notranslate"><span class="pre">Pclass</span></code> (kelas penumpang: 1, 2, 3). Nilainya memiliki <strong>urutan/peringkat</strong> namun jarak antar kelas tidak tentu sama.</p>
+<p>Langkah perhitungan:</p>
+<ol class="arabic simple">
+<li><p>Gunakan ranking yang sudah ada (1, 2, 3)</p></li>
+<li><p>Normalisasi ke skala [0,1]: <span class="math notranslate nohighlight">\(z_{if} = \dfrac{r_{if} - 1}{M_f - 1}\)</span>, dengan <span class="math notranslate nohighlight">\(M_f = 3\)</span></p></li>
+<li><p>Hitung selisih: <span class="math notranslate nohighlight">\(d = |z_i - z_j|\)</span></p></li>
+</ol>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Mf</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># jumlah rank: kelas 1, 2, 3</span>
+
+<span class="n">r1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Pclass&#39;</span><span class="p">]</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Pclass&#39;</span><span class="p">]</span>
+
+<span class="n">z1</span> <span class="o">=</span> <span class="p">(</span><span class="n">r1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">Mf</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">z2</span> <span class="o">=</span> <span class="p">(</span><span class="n">r2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">Mf</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">distance</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z1</span> <span class="o">-</span> <span class="n">z2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Row 1 → Pclass = </span><span class="si">{</span><span class="n">r1</span><span class="si">}</span><span class="s2"> → z = (</span><span class="si">{</span><span class="n">r1</span><span class="si">}</span><span class="s2">-1)/(3-1) = </span><span class="si">{</span><span class="n">z1</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Row 2 → Pclass = </span><span class="si">{</span><span class="n">r2</span><span class="si">}</span><span class="s2"> → z = (</span><span class="si">{</span><span class="n">r2</span><span class="si">}</span><span class="s2">-1)/(3-1) = </span><span class="si">{</span><span class="n">z2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ordinal Distance = |</span><span class="si">{</span><span class="n">z1</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">z2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">| = </span><span class="si">{</span><span class="n">distance</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Row 1 → Pclass = 3 → z = (3-1)/(3-1) = 1.0000
+Row 2 → Pclass = 1 → z = (1-1)/(3-1) = 0.0000
+
+Ordinal Distance = |1.0000 - 0.0000| = 1.0000
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>Catatan:</strong> Pada implementasi di atas, data yang digunakan adalah baris pertama dan kedua. Pclass Row 1 = 3 (kelas bawah) dan Pclass Row 2 = 1 (kelas atas), sehingga setelah dinormalisasi jaraknya bernilai <strong>1.0</strong> (paling berbeda).</p>
+</div></blockquote>
+</section>
+<hr class="docutils" />
+<section id="numerik">
+<h2>4. Numerik<a class="headerlink" href="#numerik" title="Link to this heading">#</a></h2>
+<p>Menghitung jarak data numerik beberapa sampel dari data di atas.</p>
+<p>Fitur dengan tipe data numerik adalah <code class="docutils literal notranslate"><span class="pre">Age</span></code> dan <code class="docutils literal notranslate"><span class="pre">Fare</span></code>. Sebelum dihitung jaraknya, data dinormalisasi terlebih dahulu menggunakan <strong>Z-score</strong>:</p>
+<div class="math notranslate nohighlight">
+\[z = \frac{x - \mu}{\sigma}\]</div>
+<p>Kemudian dihitung <strong>Euclidean Distance</strong>:</p>
+<div class="math notranslate nohighlight">
+\[d(i,j) = \sqrt{\sum_{f=1}^{p}(z_{if} - z_{jf})^2}\]</div>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Fare&#39;</span><span class="p">]</span>
+
+<span class="n">mean</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">numeric_cols</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">std</span>  <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">numeric_cols</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+
+<span class="n">p1_z</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">numeric_cols</span><span class="p">]</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">std</span>
+<span class="n">p2_z</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">numeric_cols</span><span class="p">]</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">std</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Statistik dataset:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numeric_cols</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: mean=</span><span class="si">{</span><span class="n">mean</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, std=</span><span class="si">{</span><span class="n">std</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nilai setelah Z-score normalisasi:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numeric_cols</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Row 1 → </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">]</span><span class="si">}</span><span class="s2"> → z = </span><span class="si">{</span><span class="n">p1_z</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Row 2 → </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">]</span><span class="si">}</span><span class="s2"> → z = </span><span class="si">{</span><span class="n">p2_z</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">()</span>
+<span class="n">distance</span> <span class="o">=</span> <span class="n">euclidean</span><span class="p">(</span><span class="n">p1_z</span><span class="p">,</span> <span class="n">p2_z</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Euclidean Distance: </span><span class="si">{</span><span class="n">distance</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statistik dataset:
+  Age: mean=29.70, std=14.53
+  Fare: mean=32.20, std=49.69
+
+Nilai setelah Z-score normalisasi:
+  Row 1 → Age: 22.0 → z = -0.5300
+  Row 2 → Age: 38.0 → z = 0.5714
+  Row 1 → Fare: 7.25 → z = -0.5022
+  Row 2 → Fare: 71.2833 → z = 0.7864
+
+Euclidean Distance: 1.6952
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>Catatan:</strong> Pada implementasi di atas, data yang digunakan adalah baris pertama dan kedua. Perbedaan Age (22 vs 38) dan Fare (7.25 vs 71.28) yang cukup besar menghasilkan jarak Euclidean yang besar setelah dinormalisasi.</p>
+</div></blockquote>
+</section>
+<hr class="docutils" />
+<section id="campuran-mixed">
+<h2>5. Campuran (Mixed)<a class="headerlink" href="#campuran-mixed" title="Link to this heading">#</a></h2>
+<p>Menggabungkan seluruh perhitungan jarak di atas menjadi satu nilai jarak untuk data dengan <strong>tipe campuran</strong>.</p>
+<div class="math notranslate nohighlight">
+\[d(i,j) = \frac{\sum_{f=1}^{p} \delta_{ij}^{(f)} \cdot d_{ij}^{(f)}}{\sum_{f=1}^{p} \delta_{ij}^{(f)}}\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\delta = 1\)</span> jika atribut <strong>tersedia</strong> (tidak missing)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\delta = 0\)</span> jika atribut <strong>kosong/missing</strong> → di-skip</p></li>
+</ul>
+<p>Setiap jarak per tipe data yang sudah dihitung di atas dijumlahkan lalu dirata-ratakan.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">row1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">row2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Binary: Survived (Jaccard)</span>
+<span class="n">d_binary</span> <span class="o">=</span> <span class="n">jaccard</span><span class="p">(</span><span class="n">row1</span><span class="p">[[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]],</span> <span class="n">row2</span><span class="p">[[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]])</span>
+
+<span class="c1"># Nominal: Sex &amp; Embarked (Simple Matching)</span>
+<span class="n">n_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="s1">&#39;Embarked&#39;</span><span class="p">]</span>
+<span class="n">d_nominal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_cols</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">!=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_cols</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+<span class="c1"># Ordinal: Pclass</span>
+<span class="n">Mf</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">z1</span> <span class="o">=</span> <span class="p">(</span><span class="n">row1</span><span class="p">[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">Mf</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">z2</span> <span class="o">=</span> <span class="p">(</span><span class="n">row2</span><span class="p">[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">Mf</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">d_ordinal</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z1</span> <span class="o">-</span> <span class="n">z2</span><span class="p">)</span>
+
+<span class="c1"># Numerik: Age &amp; Fare (Z-score + Euclidean)</span>
+<span class="n">num_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Fare&#39;</span><span class="p">]</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">num_cols</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">std</span>  <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">num_cols</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">p1_z</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_cols</span><span class="p">]</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">std</span>
+<span class="n">p2_z</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_cols</span><span class="p">]</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">std</span>
+<span class="n">d_numeric</span> <span class="o">=</span> <span class="n">euclidean</span><span class="p">(</span><span class="n">p1_z</span><span class="p">,</span> <span class="n">p2_z</span><span class="p">)</span>
+
+<span class="c1"># Gabungkan</span>
+<span class="n">jarak</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Binary  (Survived)&#39;</span>      <span class="p">:</span> <span class="n">d_binary</span><span class="p">,</span>
+    <span class="s1">&#39;Nominal (Sex, Embarked)&#39;</span> <span class="p">:</span> <span class="n">d_nominal</span><span class="p">,</span>
+    <span class="s1">&#39;Ordinal (Pclass)&#39;</span>        <span class="p">:</span> <span class="n">d_ordinal</span><span class="p">,</span>
+    <span class="s1">&#39;Numerik (Age, Fare)&#39;</span>     <span class="p">:</span> <span class="n">d_numeric</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">jarak</span><span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Tipe Data&#39;</span><span class="si">:</span><span class="s2">&lt;30</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;delta&#39;</span><span class="si">:</span><span class="s2">&gt;6</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;Jarak&#39;</span><span class="si">:</span><span class="s2">&gt;10</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">jarak</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="si">:</span><span class="s2">&lt;30</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">delta</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;6</span><span class="si">}</span><span class="s2">   </span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s2">&gt;10.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">numerator</span>   <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">delta</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">jarak</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">jarak</span><span class="p">)</span>
+<span class="n">denominator</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">delta</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">jarak</span><span class="p">)</span>
+<span class="n">d_campuran</span>  <span class="o">=</span> <span class="n">numerator</span> <span class="o">/</span> <span class="n">denominator</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Sigma (delta x d) = </span><span class="si">{</span><span class="n">numerator</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sigma delta       = </span><span class="si">{</span><span class="n">denominator</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Jarak Campuran Row 1 vs Row 2 = </span><span class="si">{</span><span class="n">numerator</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">denominator</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">d_campuran</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tipe Data                       delta      Jarak
+--------------------------------------------------
+Binary  (Survived)                  1       1.0000
+Nominal (Sex, Embarked)             1       1.0000
+Ordinal (Pclass)                    1       1.0000
+Numerik (Age, Fare)                 1       1.6952
+--------------------------------------------------
+
+Sigma (delta x d) = 4.6952
+Sigma delta       = 4
+
+Jarak Campuran Row 1 vs Row 2 = 4.6952 / 4 = 1.1738
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>Catatan:</strong> Pada implementasi di atas, jarak campuran dihitung dengan merata-ratakan seluruh jarak per tipe data. Hasilnya mencerminkan seberapa berbeda Row 1 (laki-laki, kelas 3, tidak selamat) dengan Row 2 (perempuan, kelas 1, selamat) secara keseluruhan.</p>
+</div></blockquote>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./dataunderstanding"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="distance.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Distance</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary">1. Binary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nominal-kategorikal">2. Nominal (Kategorikal)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ordinal">3. Ordinal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerik">4. Numerik</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#campuran-mixed">5. Campuran (Mixed)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ahmad Hadi Nuryani
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
