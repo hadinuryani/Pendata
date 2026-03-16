@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Numerik &#8212; My sample book</title>
+    <title>Decimal Scaling &#8212; My sample book</title>
   
   
   
@@ -57,9 +57,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'dataunderstanding/numeric';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tugas/decimal_scaling';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Z-Score Normalization" href="zscore_normalization.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +125,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -179,15 +180,22 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../businessunderstanding.html">Business Understanding</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="dataunderstanding.html">Data Understanding</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="eksplorasi_data_iris.html">Eksplorasi Data Iris</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iris.html">Distence Iris</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="distance.html">Distance</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="mengukur_jarak.html">Mengukur Jarak Antar Data</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataunderstanding/dataunderstanding.html">Data Understanding</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataunderstanding/eksplorasi_data_iris.html">Eksplorasi Data Iris</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataunderstanding/iris.html">Distence Iris</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../dataunderstanding/distance.html">Distance</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dataunderstanding/mengukur_jarak.html">Mengukur Jarak Antar Data</a></li>
 </ul>
 </details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="missing_value.html">Missing Values Imputation &amp; Normalisasi Data</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="wknn_imputation.html">WKNN (Weighted K-Nearest Neighbor)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="minmax_normalization.html">Min-Max Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zscore_normalization.html">Z-Score Normalization</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Decimal Scaling</a></li>
 </ul>
 </details></li>
 </ul>
@@ -261,7 +269,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdataunderstanding/numeric.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftugas/decimal_scaling.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -291,7 +299,7 @@
       
       
       
-      <li><a href="../_sources/dataunderstanding/numeric.ipynb" target="_blank"
+      <li><a href="../_sources/tugas/decimal_scaling.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -362,9 +370,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -375,22 +381,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Numerik</h1>
+    <h1>Decimal Scaling</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ambil-fitur-numerik">Ambil fitur numerik</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ambil-dua-sampel">Ambil dua sampel</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#euclidean-distance">Euclidean Distance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manhattan-distance">Manhattan Distance</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -400,15 +395,39 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="numerik">
-<h1>Numerik<a class="headerlink" href="#numerik" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="decimal-scaling">
+<h1>Decimal Scaling<a class="headerlink" href="#decimal-scaling" title="Link to this heading">#</a></h1>
+<p>Rumus:</p>
+<div class="math notranslate nohighlight">
+\[
+x' = \frac{x}{10^j}
+\]</div>
+<p>Dimana:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x\)</span> = nilai asli</p></li>
+<li><p><span class="math notranslate nohighlight">\(j\)</span> = jumlah digit dari nilai terbesar</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../assets/train.csv&quot;</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">data</span><span class="o">=</span><span class="p">{</span>
+<span class="s1">&#39;IPK&#39;</span><span class="p">:[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span>
+<span class="s1">&#39;PO&#39;</span><span class="p">:[</span><span class="mi">2000000</span><span class="p">,</span><span class="mi">3000000</span><span class="p">,</span><span class="mi">2000000</span><span class="p">,</span><span class="mi">2000000</span><span class="p">,</span><span class="mi">3000000</span><span class="p">,</span><span class="mi">4000000</span><span class="p">],</span>
+<span class="s1">&#39;JML&#39;</span><span class="p">:[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">df_scaled</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">max_val</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="n">j</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">max_val</span><span class="p">)))</span>
+    <span class="n">df_scaled</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="n">j</span><span class="p">)</span>
+
+<span class="n">df_scaled</span>
 </pre></div>
 </div>
 </div>
@@ -431,175 +450,52 @@ document.write(`
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>PassengerId</th>
-      <th>Survived</th>
-      <th>Pclass</th>
-      <th>Name</th>
-      <th>Sex</th>
-      <th>Age</th>
-      <th>SibSp</th>
-      <th>Parch</th>
-      <th>Ticket</th>
-      <th>Fare</th>
-      <th>Cabin</th>
-      <th>Embarked</th>
+      <th>IPK</th>
+      <th>PO</th>
+      <th>JML</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>1</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Braund, Mr. Owen Harris</td>
-      <td>male</td>
-      <td>22.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>A/5 21171</td>
-      <td>7.2500</td>
-      <td>NaN</td>
-      <td>S</td>
+      <td>0.2</td>
+      <td>0.2</td>
+      <td>0.2</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
-      <td>female</td>
-      <td>38.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>PC 17599</td>
-      <td>71.2833</td>
-      <td>C85</td>
-      <td>C</td>
+      <td>0.3</td>
+      <td>0.3</td>
+      <td>0.3</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>3</td>
-      <td>1</td>
-      <td>3</td>
-      <td>Heikkinen, Miss. Laina</td>
-      <td>female</td>
-      <td>26.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>STON/O2. 3101282</td>
-      <td>7.9250</td>
-      <td>NaN</td>
-      <td>S</td>
+      <td>0.4</td>
+      <td>0.2</td>
+      <td>0.2</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>4</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
-      <td>female</td>
-      <td>35.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>113803</td>
-      <td>53.1000</td>
-      <td>C123</td>
-      <td>S</td>
+      <td>0.2</td>
+      <td>0.2</td>
+      <td>0.3</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>5</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Allen, Mr. William Henry</td>
-      <td>male</td>
-      <td>35.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>373450</td>
-      <td>8.0500</td>
-      <td>NaN</td>
-      <td>S</td>
+      <td>0.3</td>
+      <td>0.3</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.4</td>
+      <td>0.4</td>
+      <td>0.3</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
-<p>Menghitung jarak data numerik menggunakan dataset Titanic.
-Fitur numerik yang digunakan:</p>
-<ul class="simple">
-<li><p>Age</p></li>
-<li><p>Fare</p></li>
-<li><p>SibSp</p></li>
-<li><p>Parch</p></li>
-</ul>
-<section id="ambil-fitur-numerik">
-<h2>Ambil fitur numerik<a class="headerlink" href="#ambil-fitur-numerik" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
-
-<span class="n">numeric_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Fare&#39;</span><span class="p">,</span> <span class="s1">&#39;SibSp&#39;</span><span class="p">,</span> <span class="s1">&#39;Parch&#39;</span><span class="p">]</span>
-<span class="n">df_numeric</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">numeric_cols</span><span class="p">]</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">df_numeric</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Age      float64
-Fare     float64
-SibSp      int64
-Parch      int64
-dtype: object
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="ambil-dua-sampel">
-<h2>Ambil dua sampel<a class="headerlink" href="#ambil-dua-sampel" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">point1</span> <span class="o">=</span> <span class="n">df_numeric</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">point2</span> <span class="o">=</span> <span class="n">df_numeric</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="euclidean-distance">
-<h2>Euclidean Distance<a class="headerlink" href="#euclidean-distance" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">euclidean_distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">point1</span> <span class="o">-</span> <span class="n">point2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jarak Euclidean:&quot;</span><span class="p">,</span> <span class="n">euclidean_distance</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jarak Euclidean: 66.00199624928021
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="manhattan-distance">
-<h2>Manhattan Distance<a class="headerlink" href="#manhattan-distance" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">manhattan_distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">point1</span> <span class="o">-</span> <span class="n">point2</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jarak Manhattan:&quot;</span><span class="p">,</span> <span class="n">manhattan_distance</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jarak Manhattan: 80.0333
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -615,7 +511,7 @@ dtype: object
         },
         kernelOptions: {
             name: "python3",
-            path: "./dataunderstanding"
+            path: "./tugas"
         },
         predefinedOutput: true
     }
@@ -632,30 +528,21 @@ dtype: object
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="zscore_normalization.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Z-Score Normalization</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ambil-fitur-numerik">Ambil fitur numerik</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ambil-dua-sampel">Ambil dua sampel</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#euclidean-distance">Euclidean Distance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manhattan-distance">Manhattan Distance</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>

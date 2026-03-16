@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Kategorikal &#8212; My sample book</title>
+    <title>WKNN (Weighted K-Nearest Neighbor) &#8212; My sample book</title>
   
   
   
@@ -57,9 +57,13 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'dataunderstanding/kategorical';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tugas/wknn_imputation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Min-Max Normalization" href="minmax_normalization.html" />
+    <link rel="prev" title="Missing Values Imputation &amp; Normalisasi Data" href="missing_value.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +126,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -179,15 +181,22 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../businessunderstanding.html">Business Understanding</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="dataunderstanding.html">Data Understanding</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="eksplorasi_data_iris.html">Eksplorasi Data Iris</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iris.html">Distence Iris</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="distance.html">Distance</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="mengukur_jarak.html">Mengukur Jarak Antar Data</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataunderstanding/dataunderstanding.html">Data Understanding</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataunderstanding/eksplorasi_data_iris.html">Eksplorasi Data Iris</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataunderstanding/iris.html">Distence Iris</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../dataunderstanding/distance.html">Distance</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dataunderstanding/mengukur_jarak.html">Mengukur Jarak Antar Data</a></li>
 </ul>
 </details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="missing_value.html">Missing Values Imputation &amp; Normalisasi Data</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">WKNN (Weighted K-Nearest Neighbor)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="minmax_normalization.html">Min-Max Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zscore_normalization.html">Z-Score Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decimal_scaling.html">Decimal Scaling</a></li>
 </ul>
 </details></li>
 </ul>
@@ -261,7 +270,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdataunderstanding/kategorical.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftugas/wknn_imputation.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -291,7 +300,7 @@
       
       
       
-      <li><a href="../_sources/dataunderstanding/kategorical.ipynb" target="_blank"
+      <li><a href="../_sources/tugas/wknn_imputation.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -362,9 +371,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -375,22 +382,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Kategorikal</h1>
+    <h1>WKNN (Weighted K-Nearest Neighbor)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-kategorikal">Fitur kategorikal</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ambil-fitur">Ambil fitur</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ambil-dua-sampel">Ambil dua sampel</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-matching-distance">Simple Matching Distance</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -400,230 +396,78 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="kategorikal">
-<h1>Kategorikal<a class="headerlink" href="#kategorikal" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="wknn-weighted-k-nearest-neighbor">
+<h1>WKNN (Weighted K-Nearest Neighbor)<a class="headerlink" href="#wknn-weighted-k-nearest-neighbor" title="Link to this heading">#</a></h1>
+<p>WKNN adalah pengembangan dari algoritma <strong>K-Nearest Neighbor (KNN)</strong> yang memberikan bobot pada setiap tetangga berdasarkan jaraknya. Tetangga yang lebih dekat memiliki pengaruh lebih besar dibandingkan tetangga yang lebih jauh.</p>
+<p>Rumus bobot:</p>
+<div class="math notranslate nohighlight">
+\[
+w = \frac{1}{d^2}
+\]</div>
+<p>Keterangan:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(w\)</span> = bobot tetangga</p></li>
+<li><p><span class="math notranslate nohighlight">\(d\)</span> = jarak antara data target dengan data tetangga</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinMaxScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNeighborsRegressor</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../assets/train.csv&quot;</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">data</span><span class="o">=</span><span class="p">{</span>
+<span class="s1">&#39;IPK&#39;</span><span class="p">:[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+<span class="s1">&#39;PO&#39;</span><span class="p">:[</span><span class="mi">2000000</span><span class="p">,</span><span class="mi">3000000</span><span class="p">,</span><span class="mi">2000000</span><span class="p">,</span><span class="mi">2000000</span><span class="p">,</span><span class="mi">3000000</span><span class="p">,</span><span class="mi">4000000</span><span class="p">,</span><span class="mi">3000000</span><span class="p">],</span>
+<span class="s1">&#39;JML&#39;</span><span class="p">:[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">train</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">test</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">6</span><span class="p">:]</span>
+
+<span class="n">scalerX</span><span class="o">=</span><span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="n">scalerY</span><span class="o">=</span><span class="n">MinMaxScaler</span><span class="p">()</span>
+
+<span class="n">X_train</span><span class="o">=</span><span class="n">scalerX</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train</span><span class="p">[[</span><span class="s1">&#39;IPK&#39;</span><span class="p">,</span><span class="s1">&#39;PO&#39;</span><span class="p">]])</span>
+<span class="n">X_test</span><span class="o">=</span><span class="n">scalerX</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test</span><span class="p">[[</span><span class="s1">&#39;IPK&#39;</span><span class="p">,</span><span class="s1">&#39;PO&#39;</span><span class="p">]])</span>
+
+<span class="n">y_train</span><span class="o">=</span><span class="n">scalerY</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train</span><span class="p">[[</span><span class="s1">&#39;JML&#39;</span><span class="p">]])</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">weight</span><span class="p">(</span><span class="n">dist</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">dist</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">model</span><span class="o">=</span><span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">weights</span><span class="o">=</span><span class="n">weight</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">pred</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">hasil</span><span class="o">=</span><span class="n">scalerY</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prediksi Missing Value:&quot;</span><span class="p">,</span><span class="n">hasil</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>PassengerId</th>
-      <th>Survived</th>
-      <th>Pclass</th>
-      <th>Name</th>
-      <th>Sex</th>
-      <th>Age</th>
-      <th>SibSp</th>
-      <th>Parch</th>
-      <th>Ticket</th>
-      <th>Fare</th>
-      <th>Cabin</th>
-      <th>Embarked</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Braund, Mr. Owen Harris</td>
-      <td>male</td>
-      <td>22.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>A/5 21171</td>
-      <td>7.2500</td>
-      <td>NaN</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
-      <td>female</td>
-      <td>38.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>PC 17599</td>
-      <td>71.2833</td>
-      <td>C85</td>
-      <td>C</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>1</td>
-      <td>3</td>
-      <td>Heikkinen, Miss. Laina</td>
-      <td>female</td>
-      <td>26.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>STON/O2. 3101282</td>
-      <td>7.9250</td>
-      <td>NaN</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
-      <td>female</td>
-      <td>35.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>113803</td>
-      <td>53.1000</td>
-      <td>C123</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Allen, Mr. William Henry</td>
-      <td>male</td>
-      <td>35.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>373450</td>
-      <td>8.0500</td>
-      <td>NaN</td>
-      <td>S</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prediksi Missing Value: 2.5
+</pre></div>
 </div>
-<section id="fitur-kategorikal">
-<h2>Fitur kategorikal<a class="headerlink" href="#fitur-kategorikal" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Embarked</p></li>
-<li><p>Pclass</p></li>
-</ul>
-</section>
-<section id="ambil-fitur">
-<h2>Ambil fitur<a class="headerlink" href="#ambil-fitur" title="Link to this heading">#</a></h2>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">categorical_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Embarked&#39;</span><span class="p">,</span> <span class="s1">&#39;Pclass&#39;</span><span class="p">]</span>
-<span class="n">df_cat</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">categorical_cols</span><span class="p">]</span>
-
-<span class="n">df_cat</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prediksi Normalisasi:&quot;</span><span class="p">,</span><span class="n">pred</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prediksi Skala Asli:&quot;</span><span class="p">,</span><span class="n">hasil</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Embarked</th>
-      <th>Pclass</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>S</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>C</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>S</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>S</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>S</td>
-      <td>3</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-</section>
-<section id="ambil-dua-sampel">
-<h2>Ambil dua sampel<a class="headerlink" href="#ambil-dua-sampel" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c1</span> <span class="o">=</span> <span class="n">df_cat</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">c2</span> <span class="o">=</span> <span class="n">df_cat</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prediksi Normalisasi: 0.5
+Prediksi Skala Asli: 2.5
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="simple-matching-distance">
-<h2>Simple Matching Distance<a class="headerlink" href="#simple-matching-distance" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">categorical_distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">c1</span> <span class="o">!=</span> <span class="n">c2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Categorical Distance:&quot;</span><span class="p">,</span> <span class="n">categorical_distance</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Categorical Distance: 1.0
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -639,7 +483,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./dataunderstanding"
+            path: "./tugas"
         },
         predefinedOutput: true
     }
@@ -656,30 +500,30 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="missing_value.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Missing Values Imputation &amp; Normalisasi Data</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="minmax_normalization.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Min-Max Normalization</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-kategorikal">Fitur kategorikal</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ambil-fitur">Ambil fitur</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ambil-dua-sampel">Ambil dua sampel</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-matching-distance">Simple Matching Distance</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
