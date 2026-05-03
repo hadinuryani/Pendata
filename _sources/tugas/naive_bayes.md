@@ -118,7 +118,7 @@ result = pd.DataFrame({
 })
 
 knio.output_tables[0] = knio.Table.from_pandas(result)
-
+```
 ---
 
 ## 5. Hasil dan Evaluasi
