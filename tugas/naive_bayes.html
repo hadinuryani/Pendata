@@ -395,6 +395,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">1. Pendahuluan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">2. Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-dataset">Sumber Dataset</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-yang-digunakan">Fitur yang digunakan:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-data-awal">Contoh Data Awal</a></li>
@@ -407,16 +408,9 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">4. Implementasi</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">Workflow KNIME</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan">Penjelasan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#script-python">Script Python</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-dan-evaluasi">5. Hasil dan Evaluasi</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy">Accuracy</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">Confusion Matrix</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-report">Classification Report</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil">6. Analisis Hasil</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">7. Kesimpulan</a></li>
 </ul>
             </nav>
         </div>
@@ -439,6 +433,11 @@ document.write(`
 <section id="dataset">
 <h2>2. Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h2>
 <p>Dataset yang digunakan adalah <strong>Titanic Dataset</strong>, yang berisi informasi mengenai penumpang kapal Titanic.</p>
+<section id="sumber-dataset">
+<h3>Sumber Dataset<a class="headerlink" href="#sumber-dataset" title="Link to this heading">#</a></h3>
+<p>Dataset diperoleh dari:
+<a class="reference external" href="https://www.kaggle.com/datasets/yasserh/titanic-dataset">https://www.kaggle.com/datasets/yasserh/titanic-dataset</a></p>
+</section>
 <section id="tujuan">
 <h3>Tujuan:<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h3>
 <p>Memprediksi:</p>
@@ -497,55 +496,120 @@ document.write(`
 <li><p><strong>Python Script</strong> digunakan untuk melakukan proses machine learning menggunakan sklearn</p></li>
 </ul>
 </section>
+<section id="script-python">
+<h3>Script Python<a class="headerlink" href="#script-python" title="Link to this heading">#</a></h3>
+<p>Berikut adalah potongan kode utama yang digunakan:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">knime.scripting.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">knio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.naive_bayes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">classification_report</span>
+
+
+<span class="c1"># 1. Ambil data dari KNIME</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">knio</span><span class="o">.</span><span class="n">input_tables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+
+<span class="c1"># 2. Pilih kolom yang digunakan</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">,</span> <span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Fare&#39;</span><span class="p">,</span> <span class="s1">&#39;Survived&#39;</span><span class="p">]]</span>
+
+<span class="c1"># 3. Preprocessing</span>
+<span class="c1"># isi nilai kosong pada Age</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+
+<span class="c1"># ubah kategori ke numerik</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;male&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;female&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+
+<span class="c1"># 4. Pisahkan fitur &amp; label</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">,</span> <span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Fare&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span>
+
+<span class="c1"># 5. Split data</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="c1"># 6. Model Naive Bayes</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># 7. Prediksi</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># 8. Evaluasi</span>
+<span class="n">acc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+<span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">report</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;= HASIL MODEL =&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy:&quot;</span><span class="p">,</span> <span class="n">acc</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Confusion Matrix:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cm</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Classification Report:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">report</span><span class="p">)</span>
+
+<span class="c1"># 9. Output ke KNIME</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Accuracy&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">acc</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">knio</span><span class="o">.</span><span class="n">output_tables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">knio</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="o">---</span>
+
+<span class="c1">## 5. Hasil dan Evaluasi</span>
+
+<span class="c1">### Accuracy</span>
+<span class="n">Model</span> <span class="n">menghasilkan</span> <span class="n">nilai</span> <span class="n">akurasi</span> <span class="n">sebesar</span> <span class="o">**</span><span class="mf">0.749</span><span class="o">**</span> <span class="p">(</span><span class="n">sesuaikan</span> <span class="n">dengan</span> <span class="n">hasil</span> <span class="n">yang</span> <span class="n">kamu</span> <span class="n">dapatkan</span><span class="p">)</span><span class="o">.</span>
+
+<span class="err">!</span><span class="p">[</span><span class="n">Accuracy</span><span class="p">](</span><span class="o">../</span><span class="n">img</span><span class="o">/</span><span class="n">accuracy</span><span class="o">.</span><span class="n">png</span><span class="p">)</span>
+
+<span class="o">---</span>
+
+<span class="c1">### Confusion Matrix</span>
+<span class="n">Confusion</span> <span class="n">matrix</span> <span class="n">digunakan</span> <span class="n">untuk</span> <span class="n">melihat</span> <span class="n">performa</span> <span class="n">model</span> <span class="n">dalam</span> <span class="n">memprediksi</span> <span class="n">kelas</span><span class="o">.</span>
+
+<span class="err">!</span><span class="p">[</span><span class="n">Confusion</span> <span class="n">Matrix</span><span class="p">](</span><span class="o">../</span><span class="n">img</span><span class="o">/</span><span class="n">confusion</span><span class="o">-</span><span class="n">matriks</span><span class="o">.</span><span class="n">png</span><span class="p">)</span>
+
+<span class="o">---</span>
+
+<span class="c1">### Classification Report</span>
+<span class="n">Classification</span> <span class="n">report</span> <span class="n">menunjukkan</span> <span class="n">nilai</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">dan</span> <span class="n">f1</span><span class="o">-</span><span class="n">score</span> <span class="n">dari</span> <span class="n">model</span><span class="o">.</span>
+
+<span class="err">!</span><span class="p">[</span><span class="n">Classification</span> <span class="n">Report</span><span class="p">](</span><span class="o">../</span><span class="n">img</span><span class="o">/</span><span class="n">classification_report</span><span class="o">.</span><span class="n">png</span><span class="p">)</span>
+
+<span class="o">---</span>
+
+<span class="c1">## 6. Analisis Hasil</span>
+
+<span class="n">Berdasarkan</span> <span class="n">hasil</span> <span class="n">yang</span> <span class="n">diperoleh</span><span class="p">:</span>
+
+<span class="o">-</span> <span class="n">Model</span> <span class="n">Naive</span> <span class="n">Bayes</span> <span class="n">mampu</span> <span class="n">melakukan</span> <span class="n">klasifikasi</span> <span class="n">dengan</span> <span class="n">cukup</span> <span class="n">baik</span>
+<span class="o">-</span> <span class="n">Nilai</span> <span class="n">akurasi</span> <span class="n">menunjukkan</span> <span class="n">bahwa</span> <span class="n">sebagian</span> <span class="n">besar</span> <span class="n">prediksi</span> <span class="n">sudah</span> <span class="n">benar</span>
+<span class="o">-</span> <span class="n">Confusion</span> <span class="n">matrix</span> <span class="n">menunjukkan</span> <span class="n">adanya</span> <span class="n">beberapa</span> <span class="n">kesalahan</span> <span class="n">prediksi</span>
+<span class="o">-</span> <span class="n">Nilai</span> <span class="n">precision</span> <span class="n">dan</span> <span class="n">recall</span> <span class="n">menunjukkan</span> <span class="n">performa</span> <span class="n">model</span> <span class="n">cukup</span> <span class="n">seimbang</span>
+
+<span class="n">Faktor</span> <span class="n">seperti</span> <span class="o">**</span><span class="n">jenis</span> <span class="n">kelamin</span> <span class="p">(</span><span class="n">Sex</span><span class="p">)</span><span class="o">**</span> <span class="n">dan</span> <span class="o">**</span><span class="n">kelas</span> <span class="n">penumpang</span> <span class="p">(</span><span class="n">Pclass</span><span class="p">)</span><span class="o">**</span> <span class="n">memiliki</span> <span class="n">pengaruh</span> <span class="n">yang</span> <span class="n">signifikan</span> <span class="n">terhadap</span> <span class="n">hasil</span> <span class="n">prediksi</span><span class="o">.</span>
+
+<span class="n">Namun</span> <span class="n">demikian</span><span class="p">,</span> <span class="n">model</span> <span class="n">masih</span> <span class="n">memiliki</span> <span class="n">keterbatasan</span> <span class="n">karena</span><span class="p">:</span>
+<span class="o">-</span> <span class="n">Mengasumsikan</span> <span class="n">fitur</span> <span class="n">saling</span> <span class="n">independen</span>
+<span class="o">-</span> <span class="n">Tidak</span> <span class="n">mempertimbangkan</span> <span class="n">hubungan</span> <span class="n">kompleks</span> <span class="n">antar</span> <span class="n">fitur</span>
+
+<span class="o">---</span>
+
+<span class="c1">## 7. Kesimpulan</span>
+
+<span class="n">Berdasarkan</span> <span class="n">hasil</span> <span class="n">analisis</span><span class="p">,</span> <span class="n">dapat</span> <span class="n">disimpulkan</span> <span class="n">bahwa</span><span class="p">:</span>
+
+<span class="o">-</span> <span class="n">Algoritma</span> <span class="n">Naive</span> <span class="n">Bayes</span> <span class="n">dapat</span> <span class="n">digunakan</span> <span class="n">untuk</span> <span class="n">melakukan</span> <span class="n">klasifikasi</span> <span class="n">pada</span> <span class="n">dataset</span> <span class="n">Titanic</span>
+<span class="o">-</span> <span class="n">Model</span> <span class="n">memberikan</span> <span class="n">hasil</span> <span class="n">yang</span> <span class="n">cukup</span> <span class="n">baik</span> <span class="n">dengan</span> <span class="n">tingkat</span> <span class="n">akurasi</span> <span class="n">yang</span> <span class="n">memadai</span>
+<span class="o">-</span> <span class="n">Preprocessing</span> <span class="n">data</span> <span class="n">sangat</span> <span class="n">berpengaruh</span> <span class="n">terhadap</span> <span class="n">performa</span> <span class="n">model</span>
+
+<span class="o">---</span>
+</pre></div>
+</div>
 </section>
-<hr class="docutils" />
-<section id="hasil-dan-evaluasi">
-<h2>5. Hasil dan Evaluasi<a class="headerlink" href="#hasil-dan-evaluasi" title="Link to this heading">#</a></h2>
-<section id="accuracy">
-<h3>Accuracy<a class="headerlink" href="#accuracy" title="Link to this heading">#</a></h3>
-<p>Model menghasilkan nilai akurasi sebesar <strong>0.749</strong> (sesuaikan dengan hasil yang kamu dapatkan).</p>
-<p><img alt="Accuracy" src="../_images/accuracy.png" /></p>
-</section>
-<hr class="docutils" />
-<section id="confusion-matrix">
-<h3>Confusion Matrix<a class="headerlink" href="#confusion-matrix" title="Link to this heading">#</a></h3>
-<p>Confusion matrix digunakan untuk melihat performa model dalam memprediksi kelas.</p>
-<p><img alt="Confusion Matrix" src="../_images/confusion-matriks.png" /></p>
-</section>
-<hr class="docutils" />
-<section id="classification-report">
-<h3>Classification Report<a class="headerlink" href="#classification-report" title="Link to this heading">#</a></h3>
-<p>Classification report menunjukkan nilai precision, recall, dan f1-score dari model.</p>
-<p><img alt="Classification Report" src="../_images/classification_report.png" /></p>
-</section>
-</section>
-<hr class="docutils" />
-<section id="analisis-hasil">
-<h2>6. Analisis Hasil<a class="headerlink" href="#analisis-hasil" title="Link to this heading">#</a></h2>
-<p>Berdasarkan hasil yang diperoleh:</p>
-<ul class="simple">
-<li><p>Model Naive Bayes mampu melakukan klasifikasi dengan cukup baik</p></li>
-<li><p>Nilai akurasi menunjukkan bahwa sebagian besar prediksi sudah benar</p></li>
-<li><p>Confusion matrix menunjukkan adanya beberapa kesalahan prediksi</p></li>
-<li><p>Nilai precision dan recall menunjukkan performa model cukup seimbang</p></li>
-</ul>
-<p>Faktor seperti <strong>jenis kelamin (Sex)</strong> dan <strong>kelas penumpang (Pclass)</strong> memiliki pengaruh yang signifikan terhadap hasil prediksi.</p>
-<p>Namun demikian, model masih memiliki keterbatasan karena:</p>
-<ul class="simple">
-<li><p>Mengasumsikan fitur saling independen</p></li>
-<li><p>Tidak mempertimbangkan hubungan kompleks antar fitur</p></li>
-</ul>
-</section>
-<hr class="docutils" />
-<section id="kesimpulan">
-<h2>7. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
-<p>Berdasarkan hasil analisis, dapat disimpulkan bahwa:</p>
-<ul class="simple">
-<li><p>Algoritma Naive Bayes dapat digunakan untuk melakukan klasifikasi pada dataset Titanic</p></li>
-<li><p>Model memberikan hasil yang cukup baik dengan tingkat akurasi yang memadai</p></li>
-<li><p>Preprocessing data sangat berpengaruh terhadap performa model</p></li>
-</ul>
-<hr class="docutils" />
 </section>
 </section>
 
@@ -606,6 +670,7 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">1. Pendahuluan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">2. Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-dataset">Sumber Dataset</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-yang-digunakan">Fitur yang digunakan:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-data-awal">Contoh Data Awal</a></li>
@@ -618,16 +683,9 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">4. Implementasi</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">Workflow KNIME</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan">Penjelasan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#script-python">Script Python</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-dan-evaluasi">5. Hasil dan Evaluasi</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy">Accuracy</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">Confusion Matrix</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-report">Classification Report</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil">6. Analisis Hasil</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">7. Kesimpulan</a></li>
 </ul>
   </nav></div>
 

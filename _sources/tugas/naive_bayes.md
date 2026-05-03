@@ -1,5 +1,6 @@
 # Analisis Data Menggunakan Naive Bayes pada Titanic Dataset
 
+
 ## 1. Pendahuluan
 Dalam era data mining, klasifikasi merupakan salah satu teknik penting untuk memprediksi suatu kejadian berdasarkan data historis. Salah satu algoritma klasifikasi yang sederhana namun efektif adalah **Naive Bayes**.
 
@@ -9,6 +10,10 @@ Pada proyek ini dilakukan analisis data menggunakan algoritma Naive Bayes dengan
 
 ## 2. Dataset
 Dataset yang digunakan adalah **Titanic Dataset**, yang berisi informasi mengenai penumpang kapal Titanic.
+
+### Sumber Dataset
+Dataset diperoleh dari:
+https://www.kaggle.com/datasets/yasserh/titanic-dataset
 
 ### Tujuan:
 Memprediksi:
@@ -51,6 +56,68 @@ Naive Bayes bekerja berdasarkan teori probabilitas Bayes dengan asumsi bahwa set
 ### Penjelasan
 - **CSV Reader** digunakan untuk membaca dataset
 - **Python Script** digunakan untuk melakukan proses machine learning menggunakan sklearn
+
+### Script Python
+
+Berikut adalah potongan kode utama yang digunakan:
+
+```python
+
+import knime.scripting.io as knio
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+
+# 1. Ambil data dari KNIME
+df = knio.input_tables[0].to_pandas()
+
+# 2. Pilih kolom yang digunakan
+df = df[['Pclass', 'Sex', 'Age', 'Fare', 'Survived']]
+
+# 3. Preprocessing
+# isi nilai kosong pada Age
+df['Age'] = df['Age'].fillna(df['Age'].mean())
+
+# ubah kategori ke numerik
+df['Sex'] = df['Sex'].map({'male': 0, 'female': 1})
+
+# 4. Pisahkan fitur & label
+X = df[['Pclass', 'Sex', 'Age', 'Fare']]
+y = df['Survived']
+
+# 5. Split data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# 6. Model Naive Bayes
+model = GaussianNB()
+model.fit(X_train, y_train)
+
+# 7. Prediksi
+y_pred = model.predict(X_test)
+
+# 8. Evaluasi
+acc = accuracy_score(y_test, y_pred)
+
+cm = confusion_matrix(y_test, y_pred)
+report = classification_report(y_test, y_pred)
+
+print("= HASIL MODEL =")
+print("Accuracy:", acc)
+
+print("\nConfusion Matrix:")
+print(cm)
+
+print("\nClassification Report:")
+print(report)
+
+# 9. Output ke KNIME
+result = pd.DataFrame({
+    "Accuracy": [acc]
+})
+
+knio.output_tables[0] = knio.Table.from_pandas(result)
 
 ---
 
