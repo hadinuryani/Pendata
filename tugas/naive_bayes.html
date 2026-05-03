@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>WKNN (Weighted K-Nearest Neighbor) &#8212; My sample book</title>
+    <title>Analisis Data Menggunakan Naive Bayes pada Titanic Dataset &#8212; My sample book</title>
   
   
   
@@ -57,13 +57,10 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'tugas/wknn_imputation';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tugas/naive_bayes';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Min-Max Normalization" href="minmax_normalization.html" />
-    <link rel="prev" title="Missing Values Imputation &amp; Normalisasi Data" href="missing_value.html" />
+    <link rel="prev" title="UTS KLASIFIKASI KESUBURAN TANAH" href="../Jawaban_UTS.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -192,15 +189,15 @@
 </details></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="missing_value.html">Missing Values Imputation &amp; Normalisasi Data</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">WKNN (Weighted K-Nearest Neighbor)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="missing_value.html">Missing Values Imputation &amp; Normalisasi Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="wknn_imputation.html">WKNN (Weighted K-Nearest Neighbor)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="minmax_normalization.html">Min-Max Normalization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="zscore_normalization.html">Z-Score Normalization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="decimal_scaling.html">Decimal Scaling</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../Jawaban_UTS.html">UTS KLASIFIKASI KESUBURAN TANAH</a></li>
-<li class="toctree-l1"><a class="reference internal" href="naive_bayes.html">Analisis Data Menggunakan Naive Bayes pada Titanic Dataset</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Analisis Data Menggunakan Naive Bayes pada Titanic Dataset</a></li>
 </ul>
 
     </div>
@@ -272,7 +269,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftugas/wknn_imputation.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftugas/naive_bayes.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -302,7 +299,7 @@
       
       
       
-      <li><a href="../_sources/tugas/wknn_imputation.ipynb" target="_blank"
+      <li><a href="../_sources/tugas/naive_bayes.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -312,7 +309,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -373,7 +370,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -384,11 +383,42 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>WKNN (Weighted K-Nearest Neighbor)</h1>
+    <h1>Analisis Data Menggunakan Naive Bayes pada Titanic Dataset</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">1. Pendahuluan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">2. Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-yang-digunakan">Fitur yang digunakan:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-data-awal">Contoh Data Awal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metode">3. Metode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan">Tahapan:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">4. Implementasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">Workflow KNIME</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan">Penjelasan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-dan-evaluasi">5. Hasil dan Evaluasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy">Accuracy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">Confusion Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-report">Classification Report</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil">6. Analisis Hasil</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">7. Kesimpulan</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -398,78 +428,125 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="wknn-weighted-k-nearest-neighbor">
-<h1>WKNN (Weighted K-Nearest Neighbor)<a class="headerlink" href="#wknn-weighted-k-nearest-neighbor" title="Link to this heading">#</a></h1>
-<p>WKNN adalah pengembangan dari algoritma <strong>K-Nearest Neighbor (KNN)</strong> yang memberikan bobot pada setiap tetangga berdasarkan jaraknya. Tetangga yang lebih dekat memiliki pengaruh lebih besar dibandingkan tetangga yang lebih jauh.</p>
-<p>Rumus bobot:</p>
-<div class="math notranslate nohighlight">
-\[
-w = \frac{1}{d^2}
-\]</div>
-<p>Keterangan:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="analisis-data-menggunakan-naive-bayes-pada-titanic-dataset">
+<h1>Analisis Data Menggunakan Naive Bayes pada Titanic Dataset<a class="headerlink" href="#analisis-data-menggunakan-naive-bayes-pada-titanic-dataset" title="Link to this heading">#</a></h1>
+<section id="pendahuluan">
+<h2>1. Pendahuluan<a class="headerlink" href="#pendahuluan" title="Link to this heading">#</a></h2>
+<p>Dalam era data mining, klasifikasi merupakan salah satu teknik penting untuk memprediksi suatu kejadian berdasarkan data historis. Salah satu algoritma klasifikasi yang sederhana namun efektif adalah <strong>Naive Bayes</strong>.</p>
+<p>Pada proyek ini dilakukan analisis data menggunakan algoritma Naive Bayes dengan bantuan Python (library sklearn) yang dijalankan melalui KNIME. Tujuan dari penelitian ini adalah untuk memprediksi apakah seorang penumpang Titanic selamat atau tidak.</p>
+</section>
+<hr class="docutils" />
+<section id="dataset">
+<h2>2. Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h2>
+<p>Dataset yang digunakan adalah <strong>Titanic Dataset</strong>, yang berisi informasi mengenai penumpang kapal Titanic.</p>
+<section id="tujuan">
+<h3>Tujuan:<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h3>
+<p>Memprediksi:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(w\)</span> = bobot tetangga</p></li>
-<li><p><span class="math notranslate nohighlight">\(d\)</span> = jarak antara data target dengan data tetangga</p></li>
+<li><p><strong>Selamat (Survived = 1)</strong></p></li>
+<li><p><strong>Tidak Selamat (Survived = 0)</strong></p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinMaxScaler</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNeighborsRegressor</span>
-
-<span class="n">data</span><span class="o">=</span><span class="p">{</span>
-<span class="s1">&#39;IPK&#39;</span><span class="p">:[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
-<span class="s1">&#39;PO&#39;</span><span class="p">:[</span><span class="mi">2000000</span><span class="p">,</span><span class="mi">3000000</span><span class="p">,</span><span class="mi">2000000</span><span class="p">,</span><span class="mi">2000000</span><span class="p">,</span><span class="mi">3000000</span><span class="p">,</span><span class="mi">4000000</span><span class="p">,</span><span class="mi">3000000</span><span class="p">],</span>
-<span class="s1">&#39;JML&#39;</span><span class="p">:[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">]</span>
-<span class="p">}</span>
-
-<span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-
-<span class="n">train</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">6</span><span class="p">]</span>
-<span class="n">test</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">6</span><span class="p">:]</span>
-
-<span class="n">scalerX</span><span class="o">=</span><span class="n">MinMaxScaler</span><span class="p">()</span>
-<span class="n">scalerY</span><span class="o">=</span><span class="n">MinMaxScaler</span><span class="p">()</span>
-
-<span class="n">X_train</span><span class="o">=</span><span class="n">scalerX</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train</span><span class="p">[[</span><span class="s1">&#39;IPK&#39;</span><span class="p">,</span><span class="s1">&#39;PO&#39;</span><span class="p">]])</span>
-<span class="n">X_test</span><span class="o">=</span><span class="n">scalerX</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test</span><span class="p">[[</span><span class="s1">&#39;IPK&#39;</span><span class="p">,</span><span class="s1">&#39;PO&#39;</span><span class="p">]])</span>
-
-<span class="n">y_train</span><span class="o">=</span><span class="n">scalerY</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train</span><span class="p">[[</span><span class="s1">&#39;JML&#39;</span><span class="p">]])</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">weight</span><span class="p">(</span><span class="n">dist</span><span class="p">):</span>
-    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">dist</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="n">model</span><span class="o">=</span><span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">weights</span><span class="o">=</span><span class="n">weight</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
-
-<span class="n">pred</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="n">hasil</span><span class="o">=</span><span class="n">scalerY</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prediksi Missing Value:&quot;</span><span class="p">,</span><span class="n">hasil</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prediksi Missing Value: 2.5
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prediksi Normalisasi:&quot;</span><span class="p">,</span><span class="n">pred</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prediksi Skala Asli:&quot;</span><span class="p">,</span><span class="n">hasil</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prediksi Normalisasi: 0.5
-Prediksi Skala Asli: 2.5
-</pre></div>
-</div>
-</div>
-</div>
+</section>
+<section id="fitur-yang-digunakan">
+<h3>Fitur yang digunakan:<a class="headerlink" href="#fitur-yang-digunakan" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Pclass</strong> → kelas penumpang</p></li>
+<li><p><strong>Sex</strong> → jenis kelamin</p></li>
+<li><p><strong>Age</strong> → umur</p></li>
+<li><p><strong>Fare</strong> → harga tiket</p></li>
+</ul>
+</section>
+<section id="contoh-data-awal">
+<h3>Contoh Data Awal<a class="headerlink" href="#contoh-data-awal" title="Link to this heading">#</a></h3>
+<p><img alt="Data Awal" src="../_images/data_awal.png" /></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="metode">
+<h2>3. Metode<a class="headerlink" href="#metode" title="Link to this heading">#</a></h2>
+<p>Metode yang digunakan adalah <strong>Gaussian Naive Bayes</strong> dari library sklearn.</p>
+<p>Naive Bayes bekerja berdasarkan teori probabilitas Bayes dengan asumsi bahwa setiap fitur bersifat independen.</p>
+<section id="tahapan">
+<h3>Tahapan:<a class="headerlink" href="#tahapan" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Mengambil data dari KNIME</p></li>
+<li><p>Preprocessing:</p>
+<ul class="simple">
+<li><p>Mengisi nilai kosong pada kolom Age</p></li>
+<li><p>Mengubah data kategori menjadi numerik</p></li>
+</ul>
+</li>
+<li><p>Membagi data menjadi data latih dan data uji</p></li>
+<li><p>Melatih model Naive Bayes</p></li>
+<li><p>Melakukan prediksi</p></li>
+<li><p>Evaluasi model</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="implementasi">
+<h2>4. Implementasi<a class="headerlink" href="#implementasi" title="Link to this heading">#</a></h2>
+<section id="workflow-knime">
+<h3>Workflow KNIME<a class="headerlink" href="#workflow-knime" title="Link to this heading">#</a></h3>
+<p><img alt="Workflow" src="../_images/workflow-tugas.png" /></p>
+</section>
+<section id="penjelasan">
+<h3>Penjelasan<a class="headerlink" href="#penjelasan" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>CSV Reader</strong> digunakan untuk membaca dataset</p></li>
+<li><p><strong>Python Script</strong> digunakan untuk melakukan proses machine learning menggunakan sklearn</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="hasil-dan-evaluasi">
+<h2>5. Hasil dan Evaluasi<a class="headerlink" href="#hasil-dan-evaluasi" title="Link to this heading">#</a></h2>
+<section id="accuracy">
+<h3>Accuracy<a class="headerlink" href="#accuracy" title="Link to this heading">#</a></h3>
+<p>Model menghasilkan nilai akurasi sebesar <strong>0.749</strong> (sesuaikan dengan hasil yang kamu dapatkan).</p>
+<p><img alt="Accuracy" src="../_images/accuracy.png" /></p>
+</section>
+<hr class="docutils" />
+<section id="confusion-matrix">
+<h3>Confusion Matrix<a class="headerlink" href="#confusion-matrix" title="Link to this heading">#</a></h3>
+<p>Confusion matrix digunakan untuk melihat performa model dalam memprediksi kelas.</p>
+<p><img alt="Confusion Matrix" src="../_images/confusion-matriks.png" /></p>
+</section>
+<hr class="docutils" />
+<section id="classification-report">
+<h3>Classification Report<a class="headerlink" href="#classification-report" title="Link to this heading">#</a></h3>
+<p>Classification report menunjukkan nilai precision, recall, dan f1-score dari model.</p>
+<p><img alt="Classification Report" src="../_images/classification_report.png" /></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="analisis-hasil">
+<h2>6. Analisis Hasil<a class="headerlink" href="#analisis-hasil" title="Link to this heading">#</a></h2>
+<p>Berdasarkan hasil yang diperoleh:</p>
+<ul class="simple">
+<li><p>Model Naive Bayes mampu melakukan klasifikasi dengan cukup baik</p></li>
+<li><p>Nilai akurasi menunjukkan bahwa sebagian besar prediksi sudah benar</p></li>
+<li><p>Confusion matrix menunjukkan adanya beberapa kesalahan prediksi</p></li>
+<li><p>Nilai precision dan recall menunjukkan performa model cukup seimbang</p></li>
+</ul>
+<p>Faktor seperti <strong>jenis kelamin (Sex)</strong> dan <strong>kelas penumpang (Pclass)</strong> memiliki pengaruh yang signifikan terhadap hasil prediksi.</p>
+<p>Namun demikian, model masih memiliki keterbatasan karena:</p>
+<ul class="simple">
+<li><p>Mengasumsikan fitur saling independen</p></li>
+<li><p>Tidak mempertimbangkan hubungan kompleks antar fitur</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="kesimpulan">
+<h2>7. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Berdasarkan hasil analisis, dapat disimpulkan bahwa:</p>
+<ul class="simple">
+<li><p>Algoritma Naive Bayes dapat digunakan untuk melakukan klasifikasi pada dataset Titanic</p></li>
+<li><p>Model memberikan hasil yang cukup baik dengan tingkat akurasi yang memadai</p></li>
+<li><p>Preprocessing data sangat berpengaruh terhadap performa model</p></li>
+</ul>
+<hr class="docutils" />
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -503,22 +580,13 @@ Prediksi Skala Asli: 2.5
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="missing_value.html"
+       href="../Jawaban_UTS.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Missing Values Imputation &amp; Normalisasi Data</p>
+        <p class="prev-next-title">UTS KLASIFIKASI KESUBURAN TANAH</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="minmax_normalization.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Min-Max Normalization</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -526,6 +594,44 @@ Prediksi Skala Asli: 2.5
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">1. Pendahuluan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">2. Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-yang-digunakan">Fitur yang digunakan:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-data-awal">Contoh Data Awal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metode">3. Metode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan">Tahapan:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">4. Implementasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">Workflow KNIME</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan">Penjelasan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-dan-evaluasi">5. Hasil dan Evaluasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy">Accuracy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">Confusion Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-report">Classification Report</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil">6. Analisis Hasil</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">7. Kesimpulan</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
