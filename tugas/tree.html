@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Min-Max Normalization &#8212; My sample book</title>
+    <title>Decision Tree Heart Disease Classification &#8212; My sample book</title>
   
   
   
@@ -59,11 +59,10 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'tugas/minmax_normalization';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tugas/tree';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Z-Score Normalization" href="zscore_normalization.html" />
-    <link rel="prev" title="WKNN (Weighted K-Nearest Neighbor)" href="wknn_imputation.html" />
+    <link rel="prev" title="Analisis Data Menggunakan Naive Bayes pada Titanic Dataset" href="naive_bayes.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -192,16 +191,16 @@
 </details></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="missing_value.html">Missing Values Imputation &amp; Normalisasi Data</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="missing_value.html">Missing Values Imputation &amp; Normalisasi Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="wknn_imputation.html">WKNN (Weighted K-Nearest Neighbor)</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Min-Max Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="minmax_normalization.html">Min-Max Normalization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="zscore_normalization.html">Z-Score Normalization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="decimal_scaling.html">Decimal Scaling</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../Jawaban_UTS.html">UTS KLASIFIKASI KESUBURAN TANAH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="naive_bayes.html">Analisis Data Menggunakan Naive Bayes pada Titanic Dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tree.html">Decision Tree Heart Disease Classification</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Decision Tree Heart Disease Classification</a></li>
 
 
 
@@ -281,7 +280,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftugas/minmax_normalization.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftugas/tree.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -311,7 +310,7 @@
       
       
       
-      <li><a href="../_sources/tugas/minmax_normalization.ipynb" target="_blank"
+      <li><a href="../_sources/tugas/tree.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -321,7 +320,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -395,7 +394,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Min-Max Normalization</h1>
+    <h1>Decision Tree Heart Disease Classification</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -405,8 +404,30 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus">Rumus</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Decision Tree Heart Disease Classification</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-pada-knime">Implementasi Pada KNIME</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partitioning">Partitioning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-learner">Decision Tree Learner</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-gain-ratio">Konsep Gain Ratio</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy">Entropy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#information-gain">Information Gain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-information">Split Information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gain-ratio">Gain Ratio</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-entropy-root">Perhitungan Entropy Root</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pembentukan-tree">Pembentukan Tree</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-predictor">Decision Tree Predictor</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">Confusion Matrix</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#akurasi-model">Akurasi Model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -417,108 +438,214 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="min-max-normalization">
-<h1>Min-Max Normalization<a class="headerlink" href="#min-max-normalization" title="Link to this heading">#</a></h1>
-<section id="rumus">
-<h2>Rumus<a class="headerlink" href="#rumus" title="Link to this heading">#</a></h2>
-<div class="math notranslate nohighlight">
-\[
-x' = \frac{x - x_{min}}{x_{max} - x_{min}}
-\]</div>
-<p>Metode ini mengubah nilai data ke dalam rentang <strong>0–1</strong>.</p>
-<p>Keterangan:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="decision-tree-heart-disease-classification">
+<h1>Decision Tree Heart Disease Classification<a class="headerlink" href="#decision-tree-heart-disease-classification" title="Link to this heading">#</a></h1>
+<section id="dataset">
+<h2>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h2>
+<p>Dataset yang digunakan pada penelitian ini adalah <code class="docutils literal notranslate"><span class="pre">Heart</span> <span class="pre">Disease</span> <span class="pre">Dataset</span></code>. Dataset ini digunakan untuk melakukan klasifikasi apakah seseorang memiliki penyakit jantung atau tidak berdasarkan kondisi medis pasien.</p>
+<p>Dataset terdiri dari beberapa atribut medis seperti umur, tekanan darah, kadar kolesterol, detak jantung, dan lain sebagainya yang digunakan untuk memprediksi kemungkinan penyakit jantung.</p>
+<p>Link Dataset : <a class="reference external" href="https://www.kaggle.com/datasets">https://www.kaggle.com/datasets</a></p>
+<p>Dataset ini memiliki beberapa fitur numerik dan kategorikal dengan label target berupa:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(x'\)</span> = nilai hasil normalisasi</p></li>
-<li><p><span class="math notranslate nohighlight">\(x\)</span> = nilai asli</p></li>
-<li><p><span class="math notranslate nohighlight">\(x_{min}\)</span> = nilai minimum pada dataset</p></li>
-<li><p><span class="math notranslate nohighlight">\(x_{max}\)</span> = nilai maksimum pada dataset</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> = Tidak memiliki penyakit jantung</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> = Memiliki penyakit jantung</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinMaxScaler</span>
-
-<span class="n">data</span><span class="o">=</span><span class="p">{</span>
-<span class="s1">&#39;IPK&#39;</span><span class="p">:[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span>
-<span class="s1">&#39;PO&#39;</span><span class="p">:[</span><span class="mi">2000000</span><span class="p">,</span><span class="mi">3000000</span><span class="p">,</span><span class="mi">2000000</span><span class="p">,</span><span class="mi">2000000</span><span class="p">,</span><span class="mi">3000000</span><span class="p">,</span><span class="mi">4000000</span><span class="p">],</span>
-<span class="s1">&#39;JML&#39;</span><span class="p">:[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
-<span class="p">}</span>
-
-<span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-
-<span class="n">scaler</span><span class="o">=</span><span class="n">MinMaxScaler</span><span class="p">()</span>
-<span class="n">norm</span><span class="o">=</span><span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">norm</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>IPK</th>
-      <th>PO</th>
-      <th>JML</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.5</td>
-      <td>0.5</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.5</td>
-      <td>0.5</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-    </tr>
-  </tbody>
+<p>Berikut beberapa fitur utama pada dataset:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>No</p></th>
+<th class="head"><p>Nama Fitur</p></th>
+<th class="head"><p>Deskripsi</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>age</p></td>
+<td><p>Umur pasien</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>sex</p></td>
+<td><p>Jenis kelamin</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>cp</p></td>
+<td><p>Tipe nyeri dada</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>trestbps</p></td>
+<td><p>Tekanan darah saat istirahat</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>chol</p></td>
+<td><p>Kadar kolesterol</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>fbs</p></td>
+<td><p>Gula darah puasa</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>restecg</p></td>
+<td><p>Hasil elektrokardiografi</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>thalach</p></td>
+<td><p>Detak jantung maksimum</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>exang</p></td>
+<td><p>Angina akibat olahraga</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>oldpeak</p></td>
+<td><p>Depresi ST akibat olahraga</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>slope</p></td>
+<td><p>Kemiringan segmen ST</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>ca</p></td>
+<td><p>Jumlah pembuluh darah utama</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>thal</p></td>
+<td><p>Kelainan darah thalassemia</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>target</p></td>
+<td><p>Hasil klasifikasi penyakit jantung</p></td>
+</tr>
+</tbody>
 </table>
-</div></div></div>
 </div>
 </section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="implementasi-pada-knime">
+<h1>Implementasi Pada KNIME<a class="headerlink" href="#implementasi-pada-knime" title="Link to this heading">#</a></h1>
+<p>Workflow ini dirancang menggunakan aplikasi KNIME untuk membangun model klasifikasi Decision Tree guna memprediksi penyakit jantung berdasarkan data medis pasien.</p>
+<p><img alt="Workflow" src="../_images/work-flow-tree.png" /></p>
+<hr class="docutils" />
+<section id="partitioning">
+<h2>Partitioning<a class="headerlink" href="#partitioning" title="Link to this heading">#</a></h2>
+<p>Tahap pertama setelah membaca dataset adalah melakukan pembagian data menggunakan node <code class="docutils literal notranslate"><span class="pre">Partitioning</span></code>.</p>
+<p>Data dibagi menjadi:</p>
+<ul class="simple">
+<li><p>70% data training</p></li>
+<li><p>30% data testing</p></li>
+</ul>
+<p>Tujuan pembagian data adalah agar model dapat dilatih menggunakan data training dan diuji menggunakan data testing.</p>
+<p><img alt="Partitioning" src="../_images/partitioning.png" /></p>
+</section>
+<hr class="docutils" />
+<section id="decision-tree-learner">
+<h2>Decision Tree Learner<a class="headerlink" href="#decision-tree-learner" title="Link to this heading">#</a></h2>
+<p>Node <code class="docutils literal notranslate"><span class="pre">Decision</span> <span class="pre">Tree</span> <span class="pre">Learner</span></code> digunakan untuk membangun model pohon keputusan berdasarkan data training.</p>
+<p>Pada penelitian ini digunakan:</p>
+<ul class="simple">
+<li><p>Split Criterion : <code class="docutils literal notranslate"><span class="pre">Gain</span> <span class="pre">Ratio</span></code></p></li>
+</ul>
+<p><img alt="Decision Tree Learner" src="../_images/learner.png" /></p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="konsep-gain-ratio">
+<h1>Konsep Gain Ratio<a class="headerlink" href="#konsep-gain-ratio" title="Link to this heading">#</a></h1>
+<p>Decision Tree memilih atribut terbaik berdasarkan nilai <code class="docutils literal notranslate"><span class="pre">Gain</span> <span class="pre">Ratio</span></code> tertinggi.</p>
+<p>Rumus Gain Ratio:</p>
+<div class="math notranslate nohighlight">
+\[
+GainRatio(A) = \frac{Gain(A)}{SplitInfo(A)}
+\]</div>
+<hr class="docutils" />
+<section id="entropy">
+<h2>Entropy<a class="headerlink" href="#entropy" title="Link to this heading">#</a></h2>
+<p>Entropy digunakan untuk mengukur tingkat ketidakpastian data.</p>
+<div class="math notranslate nohighlight">
+\[
+Entropy(S) = - \sum p_i \log_2 p_i
+\]</div>
+<p>Keterangan:</p>
+<ul class="simple">
+<li><p>Semakin kecil entropy, maka data semakin murni</p></li>
+<li><p>Entropy = 0 berarti seluruh data berada pada satu kelas</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="information-gain">
+<h2>Information Gain<a class="headerlink" href="#information-gain" title="Link to this heading">#</a></h2>
+<p>Information Gain digunakan untuk mengukur seberapa baik suatu atribut membagi data.</p>
+<div class="math notranslate nohighlight">
+\[
+Gain(S,A) = Entropy(S) - \sum \frac{|S_v|}{|S|}Entropy(S_v)
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="split-information">
+<h2>Split Information<a class="headerlink" href="#split-information" title="Link to this heading">#</a></h2>
+<p>Split Information digunakan untuk mengukur penyebaran data hasil split.</p>
+<div class="math notranslate nohighlight">
+\[
+SplitInfo(A) = - \sum \frac{|S_v|}{|S|}\log_2 \frac{|S_v|}{|S|}
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="gain-ratio">
+<h2>Gain Ratio<a class="headerlink" href="#gain-ratio" title="Link to this heading">#</a></h2>
+<p>Gain Ratio merupakan hasil pembagian Information Gain dengan Split Information.</p>
+<div class="math notranslate nohighlight">
+\[
+GainRatio(A) = \frac{Gain(A)}{SplitInfo(A)}
+\]</div>
+<p>Atribut dengan nilai Gain Ratio tertinggi akan dipilih sebagai root node.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="perhitungan-entropy-root">
+<h1>Perhitungan Entropy Root<a class="headerlink" href="#perhitungan-entropy-root" title="Link to this heading">#</a></h1>
+<p>Misalnya:</p>
+<ul class="simple">
+<li><p>Jumlah kelas target 0 = xxx</p></li>
+<li><p>Jumlah kelas target 1 = xxx</p></li>
+<li><p>Total data = xxx</p></li>
+</ul>
+<p>Maka entropy root dapat dihitung menggunakan rumus entropy.</p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="pembentukan-tree">
+<h1>Pembentukan Tree<a class="headerlink" href="#pembentukan-tree" title="Link to this heading">#</a></h1>
+<p>Setelah nilai Gain Ratio dihitung untuk seluruh atribut, atribut dengan nilai tertinggi dipilih menjadi root node.</p>
+<p>Proses ini dilakukan secara rekursif sampai:</p>
+<ul class="simple">
+<li><p>seluruh node menjadi pure</p></li>
+<li><p>atau tidak ada atribut tersisa</p></li>
+</ul>
+<p>Hasil pohon keputusan dapat dilihat menggunakan node <code class="docutils literal notranslate"><span class="pre">Decision</span> <span class="pre">Tree</span> <span class="pre">View</span></code>.</p>
+<p><img alt="Tree" src="../_images/tree.png" /></p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="decision-tree-predictor">
+<h1>Decision Tree Predictor<a class="headerlink" href="#decision-tree-predictor" title="Link to this heading">#</a></h1>
+<p>Node <code class="docutils literal notranslate"><span class="pre">Decision</span> <span class="pre">Tree</span> <span class="pre">Predictor</span></code> digunakan untuk melakukan prediksi terhadap data testing menggunakan model yang telah dibuat.</p>
+<p><img alt="Predictor" src="../_images/predictor.png" /></p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="confusion-matrix">
+<h1>Confusion Matrix<a class="headerlink" href="#confusion-matrix" title="Link to this heading">#</a></h1>
+<p>Hasil prediksi dievaluasi menggunakan confusion matrix.</p>
+<p><img alt="Confusion Matrix" src="../_images/confusion-tree.png" /></p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="akurasi-model">
+<h1>Akurasi Model<a class="headerlink" href="#akurasi-model" title="Link to this heading">#</a></h1>
+<p>Akurasi model diperoleh menggunakan node <code class="docutils literal notranslate"><span class="pre">Scorer</span></code>.</p>
+<p><img alt="Accuracy" src="../_images/accuracy-tree.png" /></p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="kesimpulan">
+<h1>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h1>
+<p>Berdasarkan hasil implementasi menggunakan metode Decision Tree dengan Gain Ratio, model mampu melakukan klasifikasi penyakit jantung dengan tingkat akurasi yang cukup baik.</p>
+<p>Metode Decision Tree dapat membantu dalam proses analisis data medis karena mampu menghasilkan aturan klasifikasi yang mudah dipahami dalam bentuk pohon keputusan.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -552,22 +679,13 @@ x' = \frac{x - x_{min}}{x_{max} - x_{min}}
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="wknn_imputation.html"
+       href="naive_bayes.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">WKNN (Weighted K-Nearest Neighbor)</p>
+        <p class="prev-next-title">Analisis Data Menggunakan Naive Bayes pada Titanic Dataset</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="zscore_normalization.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Z-Score Normalization</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -585,8 +703,30 @@ x' = \frac{x - x_{min}}{x_{max} - x_{min}}
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus">Rumus</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Decision Tree Heart Disease Classification</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-pada-knime">Implementasi Pada KNIME</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partitioning">Partitioning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-learner">Decision Tree Learner</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-gain-ratio">Konsep Gain Ratio</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy">Entropy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#information-gain">Information Gain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-information">Split Information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gain-ratio">Gain Ratio</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-entropy-root">Perhitungan Entropy Root</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pembentukan-tree">Pembentukan Tree</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-predictor">Decision Tree Predictor</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">Confusion Matrix</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#akurasi-model">Akurasi Model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+
   </nav></div>
 
 </div></div>
