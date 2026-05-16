@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Decision Tree Heart Disease Classification &#8212; My sample book</title>
+    <title>Random Forest Heart Disease Classification &#8212; My sample book</title>
   
   
   
@@ -59,11 +59,10 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'tugas/tree';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tugas/random_fores';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Random Forest Heart Disease Classification" href="random_fores.html" />
-    <link rel="prev" title="Analisis Data Menggunakan Naive Bayes pada Titanic Dataset" href="naive_bayes.html" />
+    <link rel="prev" title="Decision Tree Heart Disease Classification" href="tree.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -201,7 +200,7 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../Jawaban_UTS.html">UTS KLASIFIKASI KESUBURAN TANAH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="naive_bayes.html">Analisis Data Menggunakan Naive Bayes pada Titanic Dataset</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Decision Tree Heart Disease Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tree.html">Decision Tree Heart Disease Classification</a></li>
 
 
 
@@ -210,7 +209,7 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="random_fores.html">Random Forest Heart Disease Classification</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Random Forest Heart Disease Classification</a></li>
 
 
 
@@ -293,7 +292,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftugas/tree.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftugas/random_fores.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -323,7 +322,7 @@
       
       
       
-      <li><a href="../_sources/tugas/tree.md" target="_blank"
+      <li><a href="../_sources/tugas/random_fores.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -407,7 +406,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Decision Tree Heart Disease Classification</h1>
+    <h1>Random Forest Heart Disease Classification</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -417,27 +416,20 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Decision Tree Heart Disease Classification</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Random Forest Heart Disease Classification</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-pada-knime">Implementasi Pada KNIME</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partitioning">Partitioning</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-learner">Decision Tree Learner</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-gain-ratio">Konsep Gain Ratio</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy">Entropy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#information-gain">Information Gain</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-information">Split Information</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gain-ratio">Gain Ratio</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-entropy-root">Perhitungan Entropy Root</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pembentukan-tree">Pembentukan Tree</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-predictor">Decision Tree Predictor</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-pada-knime">Implementasi Pada KNIME</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">1. CSV Reader</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script">2. Python Script</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-random-forest">Konsep Random Forest</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy">Entropy</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#information-gain">Information Gain</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-prediction">Random Forest Prediction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer">3. Scorer</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">Confusion Matrix</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#akurasi-model">Akurasi Model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy">Accuracy</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
 </ul>
 
@@ -451,19 +443,18 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="decision-tree-heart-disease-classification">
-<h1>Decision Tree Heart Disease Classification<a class="headerlink" href="#decision-tree-heart-disease-classification" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="random-forest-heart-disease-classification">
+<h1>Random Forest Heart Disease Classification<a class="headerlink" href="#random-forest-heart-disease-classification" title="Link to this heading">#</a></h1>
 <section id="dataset">
 <h2>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h2>
 <p>Dataset yang digunakan pada penelitian ini adalah <code class="docutils literal notranslate"><span class="pre">Heart</span> <span class="pre">Disease</span> <span class="pre">Dataset</span></code>. Dataset ini digunakan untuk melakukan klasifikasi apakah seseorang memiliki penyakit jantung atau tidak berdasarkan kondisi medis pasien.</p>
-<p>Dataset terdiri dari beberapa atribut medis seperti umur, tekanan darah, kadar kolesterol, detak jantung, dan lain sebagainya yang digunakan untuk memprediksi kemungkinan penyakit jantung.</p>
-<p>Link Dataset : <a class="reference external" href="https://www.kaggle.com/datasets">https://www.kaggle.com/datasets</a></p>
-<p>Dataset ini memiliki beberapa fitur numerik dan kategorikal dengan label target berupa:</p>
+<p>Dataset terdiri dari beberapa atribut medis seperti umur, tekanan darah, kadar kolesterol, detak jantung, dan atribut kesehatan lainnya.</p>
+<p>Label target pada dataset:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> = Tidak memiliki penyakit jantung</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> = Memiliki penyakit jantung</p></li>
 </ul>
-<p>Berikut beberapa fitur utama pada dataset:</p>
+<p>Berikut beberapa atribut pada dataset:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>No</p></th>
@@ -486,47 +477,35 @@ document.write(`
 </tr>
 <tr class="row-odd"><td><p>4</p></td>
 <td><p>trestbps</p></td>
-<td><p>Tekanan darah saat istirahat</p></td>
+<td><p>Tekanan darah</p></td>
 </tr>
 <tr class="row-even"><td><p>5</p></td>
 <td><p>chol</p></td>
-<td><p>Kadar kolesterol</p></td>
+<td><p>Kolesterol</p></td>
 </tr>
 <tr class="row-odd"><td><p>6</p></td>
-<td><p>fbs</p></td>
-<td><p>Gula darah puasa</p></td>
-</tr>
-<tr class="row-even"><td><p>7</p></td>
-<td><p>restecg</p></td>
-<td><p>Hasil elektrokardiografi</p></td>
-</tr>
-<tr class="row-odd"><td><p>8</p></td>
 <td><p>thalach</p></td>
 <td><p>Detak jantung maksimum</p></td>
 </tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>oldpeak</p></td>
+<td><p>Depresi ST</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>bmi</p></td>
+<td><p>Body Mass Index</p></td>
+</tr>
 <tr class="row-even"><td><p>9</p></td>
-<td><p>exang</p></td>
-<td><p>Angina akibat olahraga</p></td>
+<td><p>smoking</p></td>
+<td><p>Status merokok</p></td>
 </tr>
 <tr class="row-odd"><td><p>10</p></td>
-<td><p>oldpeak</p></td>
-<td><p>Depresi ST akibat olahraga</p></td>
+<td><p>diabetes</p></td>
+<td><p>Riwayat diabetes</p></td>
 </tr>
 <tr class="row-even"><td><p>11</p></td>
-<td><p>slope</p></td>
-<td><p>Kemiringan segmen ST</p></td>
-</tr>
-<tr class="row-odd"><td><p>12</p></td>
-<td><p>ca</p></td>
-<td><p>Jumlah pembuluh darah utama</p></td>
-</tr>
-<tr class="row-even"><td><p>13</p></td>
-<td><p>thal</p></td>
-<td><p>Kelainan darah thalassemia</p></td>
-</tr>
-<tr class="row-odd"><td><p>14</p></td>
-<td><p>target</p></td>
-<td><p>Hasil klasifikasi penyakit jantung</p></td>
+<td><p>heart_disease</p></td>
+<td><p>Label klasifikasi</p></td>
 </tr>
 </tbody>
 </table>
@@ -536,129 +515,147 @@ document.write(`
 <hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="implementasi-pada-knime">
 <h1>Implementasi Pada KNIME<a class="headerlink" href="#implementasi-pada-knime" title="Link to this heading">#</a></h1>
-<p>Workflow ini dirancang menggunakan aplikasi KNIME untuk membangun model klasifikasi Decision Tree guna memprediksi penyakit jantung berdasarkan data medis pasien.</p>
-<p><img alt="Workflow" src="../_images/work-flow-tree.png" /></p>
+<p>Workflow ini dirancang menggunakan aplikasi KNIME dengan bantuan Python Script dan library sklearn untuk membangun model klasifikasi Random Forest.</p>
+<p><img alt="Workflow" src="../_images/workflow-random-forest.png" /></p>
+</section>
 <hr class="docutils" />
-<section id="partitioning">
-<h2>Partitioning<a class="headerlink" href="#partitioning" title="Link to this heading">#</a></h2>
-<p>Tahap pertama setelah membaca dataset adalah melakukan pembagian data menggunakan node <code class="docutils literal notranslate"><span class="pre">Partitioning</span></code>.</p>
-<p>Data dibagi menjadi:</p>
+<section class="tex2jax_ignore mathjax_ignore" id="csv-reader">
+<h1>1. CSV Reader<a class="headerlink" href="#csv-reader" title="Link to this heading">#</a></h1>
+<p>Node <code class="docutils literal notranslate"><span class="pre">CSV</span> <span class="pre">Reader</span></code> digunakan untuk membaca dataset Heart Disease yang berformat CSV agar dapat diproses pada workflow KNIME.</p>
+<p><img alt="CSV Reader" src="../_images/csvreader-random-forest.png" /></p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="python-script">
+<h1>2. Python Script<a class="headerlink" href="#python-script" title="Link to this heading">#</a></h1>
+<p>Node <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">Script</span></code> digunakan untuk melakukan seluruh proses machine learning menggunakan library sklearn.</p>
+<p>Pada tahap ini dilakukan:</p>
 <ul class="simple">
-<li><p>70% data training</p></li>
-<li><p>30% data testing</p></li>
+<li><p>pembagian data training dan testing</p></li>
+<li><p>proses training model Random Forest</p></li>
+<li><p>proses prediksi data testing</p></li>
 </ul>
-<p>Tujuan pembagian data adalah agar model dapat dilatih menggunakan data training dan diuji menggunakan data testing.</p>
-<p><img alt="Partitioning" src="../_images/partitioning.png" /></p>
+<p>Berikut implementasi Random Forest menggunakan sklearn:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">knime.scripting.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">knio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="c1"># membaca data dari KNIME</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">knio</span><span class="o">.</span><span class="n">input_tables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+
+<span class="c1"># fitur dan target</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;heart_disease&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;heart_disease&quot;</span><span class="p">]</span>
+
+<span class="c1"># split data training dan testing</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+    <span class="n">stratify</span><span class="o">=</span><span class="n">y</span>
+<span class="p">)</span>
+
+<span class="c1"># model Random Forest</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;entropy&#39;</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+
+<span class="c1"># training model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># prediksi</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># membuat output</span>
+<span class="n">output_df</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">output_df</span><span class="p">[</span><span class="s2">&quot;Actual&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_test</span><span class="o">.</span><span class="n">values</span>
+<span class="n">output_df</span><span class="p">[</span><span class="s2">&quot;Prediction&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_pred</span>
+
+<span class="c1"># kirim output ke KNIME</span>
+<span class="n">knio</span><span class="o">.</span><span class="n">output_tables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">knio</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">output_df</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="Python Script" src="../_images/py-script.png" /></p>
 </section>
 <hr class="docutils" />
-<section id="decision-tree-learner">
-<h2>Decision Tree Learner<a class="headerlink" href="#decision-tree-learner" title="Link to this heading">#</a></h2>
-<p>Node <code class="docutils literal notranslate"><span class="pre">Decision</span> <span class="pre">Tree</span> <span class="pre">Learner</span></code> digunakan untuk membangun model pohon keputusan berdasarkan data training.</p>
-<p>Pada penelitian ini digunakan:</p>
+<section class="tex2jax_ignore mathjax_ignore" id="konsep-random-forest">
+<h1>Konsep Random Forest<a class="headerlink" href="#konsep-random-forest" title="Link to this heading">#</a></h1>
+<p>Random Forest merupakan metode ensemble learning yang membangun banyak decision tree dan menggabungkan hasil prediksi dari seluruh tree menggunakan voting mayoritas.</p>
+<p>Metode ini memiliki kelebihan:</p>
 <ul class="simple">
-<li><p>Split Criterion : <code class="docutils literal notranslate"><span class="pre">Gain</span> <span class="pre">Ratio</span></code></p></li>
+<li><p>akurasi lebih baik</p></li>
+<li><p>lebih stabil</p></li>
+<li><p>mengurangi overfitting</p></li>
 </ul>
-<p><img alt="Decision Tree Learner" src="../_images/learner.png" /></p>
-</section>
 </section>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="konsep-gain-ratio">
-<h1>Konsep Gain Ratio<a class="headerlink" href="#konsep-gain-ratio" title="Link to this heading">#</a></h1>
-<p>Decision Tree memilih atribut terbaik berdasarkan nilai <code class="docutils literal notranslate"><span class="pre">Gain</span> <span class="pre">Ratio</span></code> tertinggi.</p>
-<p>Rumus Gain Ratio:</p>
-<div class="math notranslate nohighlight">
-\[
-GainRatio(A) = \frac{Gain(A)}{SplitInfo(A)}
-\]</div>
-<hr class="docutils" />
-<section id="entropy">
-<h2>Entropy<a class="headerlink" href="#entropy" title="Link to this heading">#</a></h2>
+<section class="tex2jax_ignore mathjax_ignore" id="entropy">
+<h1>Entropy<a class="headerlink" href="#entropy" title="Link to this heading">#</a></h1>
 <p>Entropy digunakan untuk mengukur tingkat ketidakpastian data.</p>
 <div class="math notranslate nohighlight">
 \[
 Entropy(S) = - \sum p_i \log_2 p_i
 \]</div>
-<p>Keterangan:</p>
-<ul class="simple">
-<li><p>Semakin kecil entropy, maka data semakin murni</p></li>
-<li><p>Entropy = 0 berarti seluruh data berada pada satu kelas</p></li>
-</ul>
 </section>
 <hr class="docutils" />
-<section id="information-gain">
-<h2>Information Gain<a class="headerlink" href="#information-gain" title="Link to this heading">#</a></h2>
-<p>Information Gain digunakan untuk mengukur seberapa baik suatu atribut membagi data.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="information-gain">
+<h1>Information Gain<a class="headerlink" href="#information-gain" title="Link to this heading">#</a></h1>
+<p>Information Gain digunakan untuk menentukan atribut terbaik pada proses pemisahan node.</p>
 <div class="math notranslate nohighlight">
 \[
 Gain(S,A) = Entropy(S) - \sum \frac{|S_v|}{|S|}Entropy(S_v)
 \]</div>
 </section>
 <hr class="docutils" />
-<section id="split-information">
-<h2>Split Information<a class="headerlink" href="#split-information" title="Link to this heading">#</a></h2>
-<p>Split Information digunakan untuk mengukur penyebaran data hasil split.</p>
-<div class="math notranslate nohighlight">
-\[
-SplitInfo(A) = - \sum \frac{|S_v|}{|S|}\log_2 \frac{|S_v|}{|S|}
-\]</div>
-</section>
-<hr class="docutils" />
-<section id="gain-ratio">
-<h2>Gain Ratio<a class="headerlink" href="#gain-ratio" title="Link to this heading">#</a></h2>
-<p>Gain Ratio merupakan hasil pembagian Information Gain dengan Split Information.</p>
-<div class="math notranslate nohighlight">
-\[
-GainRatio(A) = \frac{Gain(A)}{SplitInfo(A)}
-\]</div>
-<p>Atribut dengan nilai Gain Ratio tertinggi akan dipilih sebagai root node.</p>
-</section>
-</section>
-<hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="perhitungan-entropy-root">
-<h1>Perhitungan Entropy Root<a class="headerlink" href="#perhitungan-entropy-root" title="Link to this heading">#</a></h1>
-<p>Misalnya:</p>
+<section class="tex2jax_ignore mathjax_ignore" id="random-forest-prediction">
+<h1>Random Forest Prediction<a class="headerlink" href="#random-forest-prediction" title="Link to this heading">#</a></h1>
+<p>Model Random Forest yang telah dilatih digunakan untuk melakukan prediksi terhadap data testing.</p>
+<p>Hasil prediksi menghasilkan:</p>
 <ul class="simple">
-<li><p>Jumlah kelas target 0 = xxx</p></li>
-<li><p>Jumlah kelas target 1 = xxx</p></li>
-<li><p>Total data = xxx</p></li>
+<li><p>kolom Actual</p></li>
+<li><p>kolom Prediction</p></li>
 </ul>
-<p>Maka entropy root dapat dihitung menggunakan rumus entropy.</p>
+<p><img alt="Prediction" src="../_images/predict-random-forest.png" /></p>
 </section>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="pembentukan-tree">
-<h1>Pembentukan Tree<a class="headerlink" href="#pembentukan-tree" title="Link to this heading">#</a></h1>
-<p>Setelah nilai Gain Ratio dihitung untuk seluruh atribut, atribut dengan nilai tertinggi dipilih menjadi root node.</p>
-<p>Proses ini dilakukan secara rekursif sampai:</p>
-<ul class="simple">
-<li><p>seluruh node menjadi pure</p></li>
-<li><p>atau tidak ada atribut tersisa</p></li>
-</ul>
-<p>Hasil pohon keputusan dapat dilihat menggunakan node <code class="docutils literal notranslate"><span class="pre">Decision</span> <span class="pre">Tree</span> <span class="pre">View</span></code>.</p>
-<p><img alt="Tree" src="../_images/tree.png" /></p>
-</section>
-<hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="decision-tree-predictor">
-<h1>Decision Tree Predictor<a class="headerlink" href="#decision-tree-predictor" title="Link to this heading">#</a></h1>
-<p>Node <code class="docutils literal notranslate"><span class="pre">Decision</span> <span class="pre">Tree</span> <span class="pre">Predictor</span></code> digunakan untuk melakukan prediksi terhadap data testing menggunakan model yang telah dibuat.</p>
-<p><img alt="Predictor" src="../_images/predictor.png" /></p>
+<section class="tex2jax_ignore mathjax_ignore" id="scorer">
+<h1>3. Scorer<a class="headerlink" href="#scorer" title="Link to this heading">#</a></h1>
+<p>Node <code class="docutils literal notranslate"><span class="pre">Scorer</span></code> digunakan untuk mengevaluasi performa model klasifikasi dengan membandingkan hasil prediksi dan data aktual.</p>
+<p><img alt="Scorer" src="../_images/scorer.png" /></p>
 </section>
 <hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="confusion-matrix">
 <h1>Confusion Matrix<a class="headerlink" href="#confusion-matrix" title="Link to this heading">#</a></h1>
-<p>Hasil prediksi dievaluasi menggunakan confusion matrix.</p>
-<p><img alt="Confusion Matrix" src="../_images/confusion-tree.png" /></p>
+<p>Confusion matrix digunakan untuk mengetahui jumlah:</p>
+<ul class="simple">
+<li><p>True Positive</p></li>
+<li><p>True Negative</p></li>
+<li><p>False Positive</p></li>
+<li><p>False Negative</p></li>
+</ul>
+<p><img alt="Confusion Matrix" src="../_images/confusion-random-forest.png" /></p>
 </section>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="akurasi-model">
-<h1>Akurasi Model<a class="headerlink" href="#akurasi-model" title="Link to this heading">#</a></h1>
-<p>Akurasi model diperoleh menggunakan node <code class="docutils literal notranslate"><span class="pre">Scorer</span></code>.</p>
-<p><img alt="Accuracy" src="../_images/accuracy-tree.png" /></p>
+<section class="tex2jax_ignore mathjax_ignore" id="accuracy">
+<h1>Accuracy<a class="headerlink" href="#accuracy" title="Link to this heading">#</a></h1>
+<p>Akurasi digunakan untuk mengukur tingkat ketepatan model dalam melakukan klasifikasi.</p>
+<div class="math notranslate nohighlight">
+\[
+Accuracy = \frac{TP + TN}{TP + TN + FP + FN}
+\]</div>
+<p><img alt="Accuracy" src="../_images/accurasi-random-forest.png" /></p>
 </section>
 <hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="kesimpulan">
 <h1>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h1>
-<p>Berdasarkan hasil implementasi menggunakan metode Decision Tree dengan Gain Ratio, model mampu melakukan klasifikasi penyakit jantung dengan tingkat akurasi yang cukup baik.</p>
-<p>Metode Decision Tree dapat membantu dalam proses analisis data medis karena mampu menghasilkan aturan klasifikasi yang mudah dipahami dalam bentuk pohon keputusan.</p>
+<p>Berdasarkan hasil implementasi menggunakan metode Random Forest dengan library sklearn pada KNIME, model mampu melakukan klasifikasi penyakit jantung dengan tingkat akurasi yang baik.</p>
+<p>Penggunaan sklearn memungkinkan proses machine learning dilakukan secara lebih fleksibel dan mendekati implementasi data science di dunia nyata.</p>
+<p>Metode Random Forest mampu meningkatkan stabilitas model karena menggunakan banyak decision tree dalam proses klasifikasi sehingga hasil prediksi menjadi lebih akurat dan mengurangi kemungkinan overfitting.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -692,22 +689,13 @@ GainRatio(A) = \frac{Gain(A)}{SplitInfo(A)}
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="naive_bayes.html"
+       href="tree.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Analisis Data Menggunakan Naive Bayes pada Titanic Dataset</p>
+        <p class="prev-next-title">Decision Tree Heart Disease Classification</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="random_fores.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Random Forest Heart Disease Classification</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -725,27 +713,20 @@ GainRatio(A) = \frac{Gain(A)}{SplitInfo(A)}
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Decision Tree Heart Disease Classification</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Random Forest Heart Disease Classification</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-pada-knime">Implementasi Pada KNIME</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partitioning">Partitioning</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-learner">Decision Tree Learner</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-gain-ratio">Konsep Gain Ratio</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy">Entropy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#information-gain">Information Gain</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-information">Split Information</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gain-ratio">Gain Ratio</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-entropy-root">Perhitungan Entropy Root</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pembentukan-tree">Pembentukan Tree</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-predictor">Decision Tree Predictor</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-pada-knime">Implementasi Pada KNIME</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">1. CSV Reader</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script">2. Python Script</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-random-forest">Konsep Random Forest</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy">Entropy</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#information-gain">Information Gain</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-prediction">Random Forest Prediction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer">3. Scorer</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">Confusion Matrix</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#akurasi-model">Akurasi Model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy">Accuracy</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
 </ul>
 
