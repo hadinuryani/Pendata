@@ -1,0 +1,1317 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Peramalan kadar \(NO_2\) di daerah Bojonegoro &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tugas/project';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Tugas Linier Regression" href="linear-regresi.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.JPG" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="../_static/logo.JPG" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Penambangan Data IF 4B
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../businessunderstanding.html">Business Understanding</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataunderstanding/dataunderstanding.html">Data Understanding</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dataunderstanding/eksplorasi_data_iris.html">Eksplorasi Data Iris</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dataunderstanding/iris.html">Distence Iris</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../dataunderstanding/distance.html">Distance</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dataunderstanding/mengukur_jarak.html">Mengukur Jarak Antar Data</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="missing_value.html">Missing Values Imputation &amp; Normalisasi Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="wknn_imputation.html">WKNN (Weighted K-Nearest Neighbor)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="minmax_normalization.html">Min-Max Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zscore_normalization.html">Z-Score Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decimal_scaling.html">Decimal Scaling</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../Jawaban_UTS.html">UTS KLASIFIKASI KESUBURAN TANAH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="naive_bayes.html">Analisis Data Menggunakan Naive Bayes pada Titanic Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tree.html">Decision Tree Heart Disease Classification</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="random_fores.html">Random Forest Heart Disease Classification</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="linear-regresi.html">Tugas Linier Regression</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Peramalan kadar <span class="math notranslate nohighlight">\(NO_2\)</span> di daerah Bojonegoro</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftugas/project.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tugas/project.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Peramalan kadar NO_2 di daerah Bojonegoro</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">Latar Belakang</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data">1. Pengumpulan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-data">2. Preprocessing Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-mengatasi-missing-value-menggunakan-metode-interpolasi-linear">a. Mengatasi Missing Value menggunakan metode Interpolasi Linear</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-rata-ratakan-data-dan-ubah-datetime">b. Rata-ratakan Data dan ubah Datetime</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-simpan-data-dalam-bentuk-csv">c. Simpan data dalam bentuk CSV</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-pengecekan-missing-value-data-harian-pada-csv">d. Pengecekan Missing Value data harian pada CSV</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-menggunakan-knn-regression">3. Modeling menggunakan KNN Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-normalisasi-data">a. Normalisasi Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-mengubah-data">b. Mengubah Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-dan-evaluation">Modeling dan Evaluation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting">Plotting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="peramalan-kadar-no-2-di-daerah-bojonegoro">
+<h1>Peramalan kadar <span class="math notranslate nohighlight">\(NO_2\)</span> di daerah Bojonegoro<a class="headerlink" href="#peramalan-kadar-no-2-di-daerah-bojonegoro" title="Link to this heading">#</a></h1>
+<section id="latar-belakang">
+<h2>Latar Belakang<a class="headerlink" href="#latar-belakang" title="Link to this heading">#</a></h2>
+<p>Peningkatan aktivitas industri, transportasi, serta pertumbuhan populasi yang pesat telah menyebabkan peningkatan signifikan terhadap tingkat pencemaran udara di berbagai wilayah. Salah satu polutan udara utama yang menjadi perhatian adalah Nitrogen Dioksida (NO₂), yaitu gas beracun yang dihasilkan terutama dari proses pembakaran bahan bakar fosil seperti kendaraan bermotor, pembangkit listrik, dan kegiatan industri. NO₂ memiliki dampak serius terhadap kesehatan manusia, seperti gangguan pernapasan, iritasi paru-paru, serta memperburuk penyakit asma dan bronkitis. Selain itu, NO₂ juga berkontribusi terhadap pembentukan hujan asam dan penurunan kualitas lingkungan secara keseluruhan.</p>
+</section>
+<section id="pengumpulan-data">
+<h2>1. Pengumpulan Data<a class="headerlink" href="#pengumpulan-data" title="Link to this heading">#</a></h2>
+<p>Pertama kita akan mengumpulkan data Time Series Harian kadar NO2 di daerah Bojonegoro. Pengumpulan data dari sumber website <a class="reference external" href="https://dataspace.copernicus.eu/">https://dataspace.copernicus.eu/</a> , buat akun terlebih dahulu di website copernicus tersebut.</p>
+<p>Dokumentasi cara pengambilan data di <a class="reference external" href="https://documentation.dataspace.copernicus.eu/notebook-samples/openeo/NO2Covid.html">https://documentation.dataspace.copernicus.eu/notebook-samples/openeo/NO2Covid.html</a> .</p>
+<p>Untuk menuliskan code Python untuk mengambil data, silahkan kunjungi halaman <a class="reference external" href="https://dataspace.copernicus.eu/analyse/jupyterlab">https://dataspace.copernicus.eu/analyse/jupyterlab</a>, klik Access JupyterLab, scroll kebawah sedikit …, lalu pilih Python 3 (ipykernel)</p>
+<p>Disini kita akan mengambil data kadar NO2 di daerah Bojonegoro dari tanggal 2023-10-01 sampai 2025-10-01.</p>
+<p>Kita install terlebih dahulu openeo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>openeo
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: openeo in c:\users\ahmad hadi\appdata\local\programs\python\python314\lib\site-packages (0.50.0)
+Requirement already satisfied: requests&gt;=2.26.0 in c:\users\ahmad hadi\appdata\local\programs\python\python314\lib\site-packages (from openeo) (2.32.5)
+Requirement already satisfied: urllib3&gt;=1.9.0 in c:\users\ahmad hadi\appdata\local\programs\python\python314\lib\site-packages (from openeo) (2.6.3)
+Requirement already satisfied: shapely&gt;=1.6.4 in c:\users\ahmad hadi\appdata\local\programs\python\python314\lib\site-packages (from openeo) (2.1.2)
+Requirement already satisfied: numpy&gt;=1.17.0 in c:\users\ahmad hadi\appdata\local\programs\python\python314\lib\site-packages (from openeo) (2.4.2)
+Requirement already satisfied: xarray&lt;2025.01.2,&gt;=0.12.3 in c:\users\ahmad hadi\appdata\local\programs\python\python314\lib\site-packages (from openeo) (2025.1.1)
+Requirement already satisfied: pandas&lt;3.0.0,&gt;0.20.0 in c:\users\ahmad hadi\appdata\local\programs\python\python314\lib\site-packages (from openeo) (2.3.3)
+Requirement already satisfied: pystac&gt;=1.5.0 in c:\users\ahmad hadi\appdata\local\programs\python\python314\lib\site-packages (from openeo) (1.14.3)
+Requirement already satisfied: deprecated&gt;=1.2.12 in c:\users\ahmad hadi\appdata\local\programs\python\python314\lib\site-packages (from openeo) (1.3.1)
+Requirement already satisfied: oschmod&gt;=0.3.12 in c:\users\ahmad hadi\appdata\local\programs\python\python314\lib\site-packages (from openeo) (0.3.12)
+Requirement already satisfied: geopandas&gt;=0.14 in c:\users\ahmad hadi\appdata\local\programs\python\python314\lib\site-packages (from openeo) (1.1.3)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in c:\users\ahmad hadi\appdata\roaming\python\python314\site-packages (from pandas&lt;3.0.0,&gt;0.20.0-&gt;openeo) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in c:\users\ahmad hadi\appdata\local\programs\python\python314\lib\site-packages (from pandas&lt;3.0.0,&gt;0.20.0-&gt;openeo) (2026.2)
+Requirement already satisfied: tzdata&gt;=2022.7 in c:\users\ahmad hadi\appdata\local\programs\python\python314\lib\site-packages (from pandas&lt;3.0.0,&gt;0.20.0-&gt;openeo) (2025.3)
+Requirement already satisfied: packaging&gt;=23.2 in c:\users\ahmad hadi\appdata\roaming\python\python314\site-packages (from xarray&lt;2025.01.2,&gt;=0.12.3-&gt;openeo) (26.0)
+Requirement already satisfied: wrapt&lt;3,&gt;=1.10 in c:\users\ahmad hadi\appdata\local\programs\python\python314\lib\site-packages (from deprecated&gt;=1.2.12-&gt;openeo) (2.2.1)
+Requirement already satisfied: pyogrio&gt;=0.7.2 in c:\users\ahmad hadi\appdata\local\programs\python\python314\lib\site-packages (from geopandas&gt;=0.14-&gt;openeo) (0.12.1)
+Requirement already satisfied: pyproj&gt;=3.5.0 in c:\users\ahmad hadi\appdata\local\programs\python\python314\lib\site-packages (from geopandas&gt;=0.14-&gt;openeo) (3.7.2)
+Requirement already satisfied: pywin32 in c:\users\ahmad hadi\appdata\local\programs\python\python314\lib\site-packages (from oschmod&gt;=0.3.12-&gt;openeo) (311)
+Requirement already satisfied: certifi in c:\users\ahmad hadi\appdata\local\programs\python\python314\lib\site-packages (from pyogrio&gt;=0.7.2-&gt;geopandas&gt;=0.14-&gt;openeo) (2026.2.25)
+Requirement already satisfied: six&gt;=1.5 in c:\users\ahmad hadi\appdata\roaming\python\python314\site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&lt;3.0.0,&gt;0.20.0-&gt;openeo) (1.17.0)
+Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in c:\users\ahmad hadi\appdata\local\programs\python\python314\lib\site-packages (from requests&gt;=2.26.0-&gt;openeo) (3.4.4)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in c:\users\ahmad hadi\appdata\local\programs\python\python314\lib\site-packages (from requests&gt;=2.26.0-&gt;openeo) (3.11)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[notice] A new release of pip is available: 25.2 -&gt; 26.1.2
+[notice] To update, run: python.exe -m pip install --upgrade pip
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lalu tuliskan code dibawah:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">openeo</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">connection</span> <span class="o">=</span> <span class="n">openeo</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;openeo.dataspace.copernicus.eu&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">authenticate_oidc</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Authenticated using refresh token.
+</pre></div>
+</div>
+</div>
+</div>
+<p>pada saat menjalankan baris code diatas (connection), nanti akan diminta authentikasi seperti output berikut:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Terminal/Output
+Visit (link authentikasi) 📋 to authenticate.
+✅ Authorized successfully
+Authenticated using device code flow.
+</pre></div>
+</div>
+<p>Kalian tinggal klik link authentikasi lalu login menggunakan akun “copernicus” kalian.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aoi</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Polygon&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">[</span>
+            <span class="p">[</span><span class="mf">111.8596709</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.1154245</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">111.6093957</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.1154245</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">111.6093957</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.2272944</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">111.8596709</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.2272944</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">111.8596709</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.1154245</span><span class="p">],</span>
+        <span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">s5post</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">load_collection</span><span class="p">(</span>
+    <span class="s2">&quot;SENTINEL_5P_L2&quot;</span><span class="p">,</span>
+    <span class="n">temporal_extent</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2023-10-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2025-10-01&quot;</span><span class="p">],</span>
+    <span class="n">spatial_extent</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;west&quot;</span><span class="p">:</span> <span class="mf">111.6093957</span><span class="p">,</span>
+        <span class="s2">&quot;south&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">7.2272944</span><span class="p">,</span>
+        <span class="s2">&quot;east&quot;</span><span class="p">:</span> <span class="mf">111.8596709</span><span class="p">,</span>
+        <span class="s2">&quot;north&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">7.1154245</span>
+    <span class="p">},</span>
+    <span class="n">bands</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;NO2&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="c1"># Now aggregate by day to avoid having multiple data per day</span>
+<span class="n">s5p_no2_daily</span> <span class="o">=</span> <span class="n">s5post</span><span class="o">.</span><span class="n">aggregate_temporal_period</span><span class="p">(</span><span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">)</span>
+
+<span class="c1"># Now create a spatial aggregation to generate mean timeseries data</span>
+<span class="n">s5p_no2_aoi</span> <span class="o">=</span> <span class="n">s5p_no2_daily</span><span class="o">.</span><span class="n">aggregate_spatial</span><span class="p">(</span><span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">geometries</span><span class="o">=</span><span class="n">aoi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Code diatas memerlukan titik koordinasi area yang akan diambil data <span class="math notranslate nohighlight">\(NO_2\)</span>-nya, untuk mengambil titik koordinasi kunjungi website <a class="reference external" href="https://geojson.io/#map=12/-7.1713/111.7345">https://geojson.io/#map=12/-7.1713/111.7345</a> . Didalam website tersebut kalian akan memilih daerah dengan cara memberi shape kotak didaerah yang ingin kalian ambil datanya.</p>
+<p>Di panel sebelah kanan terdapat data JSON yang berupa koordinat daerah yang kalian pilih, kalian salin terus sesuaikan dengan code diatas di bagian variabel “aoi” dan spatial_extent.</p>
+<p>Lalu kalian tambahkan baris code dibawah untuk memulai pengambilan data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">s5post</span><span class="o">.</span><span class="n">execute_batch</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;NO2 in Bojonegoro&quot;</span><span class="p">,</span> <span class="n">outputfile</span><span class="o">=</span><span class="s2">&quot;NO2Bojonegoro.nc&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:00 Job &#39;j-26060307425048c6b9e1fd5026bc16c1&#39;: send &#39;start&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Tunggu proses pengambilan data, output proses seperti berikut:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="n">Job</span> <span class="s1">&#39;j-26060307195148e292e1d2a0caed31cc&#39;</span><span class="p">:</span> <span class="n">send</span> <span class="s1">&#39;start&#39;</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">50</span> <span class="n">Job</span> <span class="s1">&#39;j-26060307195148e292e1d2a0caed31cc&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">59</span> <span class="n">Job</span> <span class="s1">&#39;j-26060307195148e292e1d2a0caed31cc&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">06</span> <span class="n">Job</span> <span class="s1">&#39;j-26060307195148e292e1d2a0caed31cc&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">14</span> <span class="n">Job</span> <span class="s1">&#39;j-26060307195148e292e1d2a0caed31cc&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">24</span> <span class="n">Job</span> <span class="s1">&#39;j-26060307195148e292e1d2a0caed31cc&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">36</span> <span class="n">Job</span> <span class="s1">&#39;j-26060307195148e292e1d2a0caed31cc&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">52</span> <span class="n">Job</span> <span class="s1">&#39;j-26060307195148e292e1d2a0caed31cc&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">12</span> <span class="n">Job</span> <span class="s1">&#39;j-26060307195148e292e1d2a0caed31cc&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">36</span> <span class="n">Job</span> <span class="s1">&#39;j-26060307195148e292e1d2a0caed31cc&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">06</span> <span class="n">Job</span> <span class="s1">&#39;j-26060307195148e292e1d2a0caed31cc&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">43</span> <span class="n">Job</span> <span class="s1">&#39;j-26060307195148e292e1d2a0caed31cc&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mi">30</span> <span class="n">Job</span> <span class="s1">&#39;j-26060307195148e292e1d2a0caed31cc&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mi">29</span> <span class="n">Job</span> <span class="s1">&#39;j-26060307195148e292e1d2a0caed31cc&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">29</span> <span class="n">Job</span> <span class="s1">&#39;j-26060307195148e292e1d2a0caed31cc&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">07</span><span class="p">:</span><span class="mi">30</span> <span class="n">Job</span> <span class="s1">&#39;j-26060307195148e292e1d2a0caed31cc&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">08</span><span class="p">:</span><span class="mi">30</span> <span class="n">Job</span> <span class="s1">&#39;j-26060307195148e292e1d2a0caed31cc&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mi">31</span> <span class="n">Job</span> <span class="s1">&#39;j-26060307195148e292e1d2a0caed31cc&#39;</span><span class="p">:</span> <span class="n">finished</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">100</span><span class="o">%</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Abaikan ketika ada N/A.</p>
+<p>Ketika proses pengambilan data, aktivitas kalian akan terekam di halaman <a class="reference external" href="https://editor.openeo.org/?server=https%3A%2F%2Fopeneo.dataspace.copernicus.eu%2Fopeneo%2F1.2">https://editor.openeo.org/?server=https%3A%2F%2Fopeneo.dataspace.copernicus.eu%2Fopeneo%2F1.2</a> . Disitu terdapat nama dataset dan status pengambilan data.</p>
+</section>
+<section id="preprocessing-data">
+<h2>2. Preprocessing Data<a class="headerlink" href="#preprocessing-data" title="Link to this heading">#</a></h2>
+<p>Setelah kita mengambil data, data bisa diunduh di halaman <a class="reference external" href="https://editor.openeo.org/?server=https%3A%2F%2Fopeneo.dataspace.copernicus.eu%2Fopeneo%2F1.2">https://editor.openeo.org/?server=https%3A%2F%2Fopeneo.dataspace.copernicus.eu%2Fopeneo%2F1.2</a> . File akan berbentuk .nc. Kita cuman perlu kolom date dan NO2 menggunakan code dibawah:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span>
+
+<span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;data/openEO.nc&quot;</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+
+<span class="c1"># Lihat seluruh variabel yang tersedia</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📦 Variabel dalam file:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+<span class="c1"># Ambil NO2</span>
+<span class="n">no2</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;NO2&quot;</span><span class="p">][:]</span>
+
+<span class="c1"># Ambil Time</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">][:]</span>
+
+<span class="c1"># Konversi waktu ke format tanggal jika punya atribut &#39;units&#39;</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">time_units</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">units</span>
+    <span class="n">dates</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="n">time_units</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+    <span class="n">dates</span> <span class="o">=</span> <span class="n">time</span>  <span class="c1"># fallback kalau tidak ada units</span>
+
+<span class="c1"># Tampilkan struktur data NO2</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">no2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">no2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">no2</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">no2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">no2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>📦 Variabel dalam file:
+dict_keys([&#39;t&#39;, &#39;x&#39;, &#39;y&#39;, &#39;crs&#39;, &#39;NO2&#39;])
+&lt;class &#39;numpy.ma.MaskedArray&#39;&gt;
+726
+4
+5
+2.3487672e-05
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dari code diatas kita mengetahui bentuk data dari kolom NO2 nya.</p>
+<p>Untuk melihat 10 data pertama adalah:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Contoh data pertama:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">no2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Contoh data pertama:
+[[2.3487671569455415e-05 4.054677265230566e-05 3.003061647177674e-05
+  2.8549688067869283e-05 2.9555903893196955e-05]
+ [4.6808931074338034e-05 4.054677265230566e-05 2.3878199499449693e-05
+  3.3463431464042515e-05 2.9555903893196955e-05]
+ [2.9249762519611977e-05 2.462200245645363e-05 2.3878199499449693e-05
+  4.076754339621402e-05 4.076754339621402e-05]
+ [2.9249762519611977e-05 3.142260175081901e-05 3.0169410820235498e-05
+  3.0169410820235498e-05 4.080959115526639e-05]]
+[[1.8213286239188164e-05 2.3665257685934193e-05 2.8048687454429455e-05
+  1.9495668311719783e-05 3.0114006221992895e-05]
+ [3.2921143429121e-05 1.7705448044580407e-05 2.786409095278941e-05
+  3.0114006221992895e-05 3.0114006221992895e-05]
+ [3.2921143429121e-05 3.8656344258924946e-05 2.786409095278941e-05
+  3.795989687205292e-05 3.795989687205292e-05]
+ [2.708628380787559e-05 3.8656344258924946e-05 3.978833046858199e-05
+  3.795989687205292e-05 2.610431874927599e-05]]
+[[3.518018274917267e-05 3.518018274917267e-05 2.9690496376133524e-05
+  2.9690496376133524e-05 1.7879654478747398e-05]
+ [3.518018274917267e-05 5.913389031775296e-05 6.403653969755396e-05
+  6.403653969755396e-05 4.4562450057128444e-05]
+ [5.913389031775296e-05 5.913389031775296e-05 6.403653969755396e-05
+  6.403653969755396e-05 --]
+ [-- -- -- -- --]]
+[[3.408771590329707e-05 2.5854977138806134e-05 3.633075539255515e-05
+  4.928432827000506e-05 4.512562736636028e-05]
+ [3.408771590329707e-05 2.5854977138806134e-05 6.70934168738313e-05
+  4.473296939977445e-05 6.082381514715962e-05]
+ [6.992818816797808e-05 6.028242933098227e-05 6.70934168738313e-05
+  4.473296939977445e-05 --]
+ [4.780942254001275e-05 -- -- 6.831239443272352e-05 --]]
+[[4.170298780081794e-05 1.246378815267235e-05 2.8753484002663754e-05
+  3.5313874832354486e-05 3.686007403302938e-05]
+ [2.390875670243986e-05 3.319388270028867e-05 2.8753484002663754e-05
+  3.4010849049082026e-05 --]
+ [2.650305577844847e-05 3.773074786295183e-05 3.8148606108734384e-05
+  3.4010849049082026e-05 --]
+ [2.650305577844847e-05 3.773074786295183e-05 3.904213372152299e-05 --
+  3.846756226266734e-05]]
+[[3.833330629277043e-05 4.354702468845062e-05 3.155516242259182e-05
+  5.0606475269887596e-05 5.7708355598151684e-05]
+ [3.833330629277043e-05 -- 4.2012914491351694e-05 5.0606475269887596e-05
+  5.373374369810335e-05]
+ [3.93301852454897e-05 -- 4.635162986232899e-05 2.724433215917088e-05
+  5.373374369810335e-05]
+ [2.199415393988602e-05 3.623629527282901e-05 4.635162986232899e-05
+  3.2398125767940655e-05 5.026283906772733e-05]]
+[[1.351629998680437e-05 2.7364403649698943e-05 4.520575748756528e-05
+  2.9681325031560846e-05 2.9681325031560846e-05]
+ [-- 4.520575748756528e-05 4.520575748756528e-05 3.593981091398746e-05
+  3.593981091398746e-05]
+ [-- -- -- 3.593981091398746e-05 4.605999492923729e-05]
+ [-- -- -- 4.605999492923729e-05 4.605999492923729e-05]]
+[[3.061677853111178e-05 1.3813430086884182e-05 1.3805429261992685e-05
+  1.3805429261992685e-05 1.1951815395150334e-05]
+ [3.061677853111178e-05 3.9223352359840646e-05 3.9223352359840646e-05
+  3.967928932979703e-05 4.55927693110425e-05]
+ [3.1596111512044445e-05 3.9223352359840646e-05 3.9223352359840646e-05
+  3.511188697302714e-05 2.9745149731752463e-05]
+ [3.583852594601922e-05 3.583852594601922e-05 3.2737945730332285e-05
+  3.511188697302714e-05 2.9745149731752463e-05]]
+[[3.970468242187053e-05 3.970468242187053e-05 3.446653136052191e-05
+  5.401708040153608e-05 --]
+ [4.729263673652895e-05 4.722809171653353e-05 4.169805470155552e-05
+  5.4493728384841233e-05 --]
+ [4.729263673652895e-05 6.800748815294355e-05 5.5937001889105886e-05
+  7.276047836057842e-05 --]
+ [-- 6.800748815294355e-05 5.5937001889105886e-05 7.276047836057842e-05
+  5.5774675274733454e-05]]
+[[2.7884272640221752e-05 3.368260513525456e-05 3.613417356973514e-05
+  2.3017644707579166e-05 4.9639431381365284e-05]
+ [-- 5.7717359595699236e-05 3.7346013414207846e-05 2.3017644707579166e-05
+  3.94380149373319e-05]
+ [-- -- -- -- 3.94380149373319e-05]
+ [-- -- -- -- 3.086760261794552e-05]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dalam sehari, terdapat banyak data NO2, jadi kita rata-ratakan agar satu cell data hanya terdapat satu value. Namun terdapat masalah pada data NO2 seperti missing value.</p>
+<section id="a-mengatasi-missing-value-menggunakan-metode-interpolasi-linear">
+<h3>a. Mengatasi Missing Value menggunakan metode Interpolasi Linear<a class="headerlink" href="#a-mengatasi-missing-value-menggunakan-metode-interpolasi-linear" title="Link to this heading">#</a></h3>
+<p>Sekarang kita akan mengatasi permasalahan missing value pada data NO2.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Interpolasi Linear</span>
+<span class="n">no2_filled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">no2</span><span class="p">)</span>
+<span class="c1"># Untuk jaga-jaga jika terdapat &#39;--&#39; tidak berubah menjadi 0</span>
+<span class="n">no2_filled</span> <span class="o">=</span> <span class="n">no2_filled</span><span class="o">.</span><span class="n">filled</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># loop tiap grid (y,x)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no2</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no2</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]):</span>
+        <span class="n">series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">no2</span><span class="p">[:,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">])</span>
+        <span class="n">no2_filled</span><span class="p">[:,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">limit_direction</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dengan code diatas, missing value yang terdapat pada data NO2 akan diisi secara otomatis menggunakan metode Interpolasi Linear.</p>
+</section>
+<section id="b-rata-ratakan-data-dan-ubah-datetime">
+<h3>b. Rata-ratakan Data dan ubah Datetime<a class="headerlink" href="#b-rata-ratakan-data-dan-ubah-datetime" title="Link to this heading">#</a></h3>
+<p>Setelah mengatasi missing value, kita akan me-rata-rata-kan data NO2 agar satu record hanya berupa single value. Sekalian kita mengambil date nya dan menaruh di array. Kita akan mengubah datetime dari awalnya (2023-10-04 00:00:00) menjadi (2023-10-04) karena kita mengambil data time series harian jadi kita tidak memerlukan data jam, menit dan detik.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_dates</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">new_no2</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dates</span><span class="p">)):</span>
+    <span class="c1"># ubah format datetime</span>
+    <span class="n">new_date</span> <span class="o">=</span> <span class="n">dates</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">new_dates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_date</span><span class="p">)</span>
+    <span class="n">new_no2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">no2_filled</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="c-simpan-data-dalam-bentuk-csv">
+<h3>c. Simpan data dalam bentuk CSV<a class="headerlink" href="#c-simpan-data-dalam-bentuk-csv" title="Link to this heading">#</a></h3>
+<p>Setelah itu kita akan membentuk data menjadi DataFrame Pandas untuk disimpan menjadi CSV.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="n">new_dates</span><span class="p">,</span>
+    <span class="s2">&quot;NO2&quot;</span><span class="p">:</span> <span class="n">new_no2</span>
+<span class="p">})</span>
+
+<span class="c1"># Simpan ke CSV</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;NO2_Bojonegoro_timeseries.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         date       NO2
+0  2023-10-01  0.000032
+1  2023-10-02  0.000030
+2  2023-10-03  0.000045
+3  2023-10-04  0.000047
+4  2023-10-05  0.000036
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 726 entries, 0 to 725
+Data columns (total 2 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   date    726 non-null    object 
+ 1   NO2     726 non-null    float32
+dtypes: float32(1), object(1)
+memory usage: 8.6+ KB
+None
+</pre></div>
+</div>
+</div>
+</div>
+<p>Untuk mengatasi missing value dan menyimpan data ke CSV sudah berhasil.</p>
+</section>
+<section id="d-pengecekan-missing-value-data-harian-pada-csv">
+<h3>d. Pengecekan Missing Value data harian pada CSV<a class="headerlink" href="#d-pengecekan-missing-value-data-harian-pada-csv" title="Link to this heading">#</a></h3>
+<p>Sekarang setelah data berbentuk CSV, kita cek apakah data Time Series harian lengkap. Cara men-cek apakah data Time Series Harian lengkap gunakan code dibawah:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;NO2_Bojonegoro_timeseries.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Pastikan kolom &#39;date&#39; bertipe datetime</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+
+<span class="c1"># Buat rentang tanggal lengkap</span>
+<span class="n">start_date</span> <span class="o">=</span> <span class="s2">&quot;2023-10-01&quot;</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s2">&quot;2025-09-30&quot;</span>
+<span class="n">full_range</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end_date</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+
+<span class="c1"># Cek tanggal yang hilang</span>
+<span class="n">missing_dates</span> <span class="o">=</span> <span class="n">full_range</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah hari missing: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">missing_dates</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Daftar tanggal missing:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">missing_dates</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah hari missing: 5
+Daftar tanggal missing:
+DatetimeIndex([&#39;2023-11-11&#39;, &#39;2024-01-01&#39;, &#39;2024-03-23&#39;, &#39;2025-01-30&#39;,
+               &#39;2025-01-31&#39;],
+              dtype=&#39;datetime64[ns]&#39;, freq=None)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Jika terdapat hari yang missing, kita akan mengatasi lagi missing value menggunakan metode Interpolasi Linear. Cara memperbaikinya gunakan code dibawah:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Pastikan datetime dan sorting</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+
+<span class="c1"># Buat rentang tanggal lengkap</span>
+<span class="n">full_range</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2023-10-01&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2025-09-30&quot;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+
+<span class="c1"># Reindex agar tanggal yang hilang muncul sebagai NaN</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">full_range</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;date&#39;</span>
+
+<span class="c1"># Interpolasi linear berdasarkan indeks waktu</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+
+<span class="c1"># (Opsional) jika masih ada NaN di bagian awal/akhir bisa gunakan forward/backward fill</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">bfill</span><span class="p">()</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span>
+
+<span class="c1"># Simpan kembali ke CSV</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;no2_bojonegoro_interpolated.csv&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data setelah interpolasi:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data setelah interpolasi:
+                 NO2
+date                
+2023-10-01  0.000032
+2023-10-02  0.000030
+2023-10-03  0.000045
+2023-10-04  0.000047
+2023-10-05  0.000036
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 731 entries, 2023-10-01 to 2025-09-30
+Freq: D
+Data columns (total 1 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   NO2     731 non-null    float64
+dtypes: float64(1)
+memory usage: 11.4 KB
+None
+</pre></div>
+</div>
+</div>
+</div>
+<p>Cek ulang apakah masih ada missing value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cek ulang missing value</span>
+<span class="n">missing_dates_check</span> <span class="o">=</span> <span class="n">full_range</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah hari missing: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">missing_dates_check</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Daftar tanggal missing:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">missing_dates_check</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah hari missing: 0
+Daftar tanggal missing:
+DatetimeIndex([], dtype=&#39;datetime64[ns]&#39;, name=&#39;date&#39;, freq=&#39;D&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Setelah dicek missing value harian, sudah tidak ada lagi missing value.</p>
+<p>Dengan bentuk data terdapat 2 kolom, kolom pertama yaitu date atau tanggal, kolom kedua yaitu kadar NO2 yang sudah di rata-rata kan.</p>
+</section>
+</section>
+<section id="modeling-menggunakan-knn-regression">
+<h2>3. Modeling menggunakan KNN Regression<a class="headerlink" href="#modeling-menggunakan-knn-regression" title="Link to this heading">#</a></h2>
+<p>Dengan data Time Series kadar NO2 harian di daerah Bojonegoro, kita akan memprediksi kadar NO2 satu hari yang akan datang. Sekarang kita akan ubah data, mencoba mencari korelasi antara 1 hari dengan 4 hari sebelumnya. Kita juga akan membandingkan apakah semakin banyak hari sebelumnya, model akan lebih bagus?</p>
+<section id="a-normalisasi-data">
+<h3>a. Normalisasi Data<a class="headerlink" href="#a-normalisasi-data" title="Link to this heading">#</a></h3>
+<p>Karena kita menggunakan model KNN Regression, maka perlu normalisasi data menggunakan Min-Max Scaler.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinMaxScaler</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2_scaled&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 NO2  NO2_scaled
+date                            
+2023-10-01  0.000032    0.446936
+2023-10-02  0.000030    0.398857
+2023-10-03  0.000045    0.722477
+2023-10-04  0.000047    0.763102
+2023-10-05  0.000036    0.515276
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 731 entries, 2023-10-01 to 2025-09-30
+Freq: D
+Data columns (total 2 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   NO2         731 non-null    float64
+ 1   NO2_scaled  731 non-null    float64
+dtypes: float64(2)
+memory usage: 17.1 KB
+None
+</pre></div>
+</div>
+</div>
+</div>
+<p>Maka data akan di-normalisasi 0-1.</p>
+</section>
+<section id="b-mengubah-data">
+<h3>b. Mengubah Data<a class="headerlink" href="#b-mengubah-data" title="Link to this heading">#</a></h3>
+<p>Sekarang saya ingin mengubah data dari sebelumnya hanya 2 fitur menjadi 4 hari sebelum yang terdapat 5 fitur (t-4, t-3, t-2, t-1, dan t sebagai label), saya juga membuat data 10 hari sebelum untuk membandingkan apakah semakin banyak hari sebelum, semakin baik pula modelnya?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">create_supervised</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n_lag</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">df_supervised</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    
+    <span class="c1"># Membuat fitur t-4 sampai t-1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_lag</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">df_supervised</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;NO2(t-</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    
+    <span class="c1"># Label hari H</span>
+    <span class="n">df_supervised</span><span class="p">[</span><span class="s1">&#39;NO2(t)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+    
+    <span class="c1"># Hapus baris yang masih mengandung NaN akibat shift</span>
+    <span class="n">df_supervised</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">df_supervised</span>
+
+<span class="c1"># contoh penggunaan</span>
+<span class="n">supervised_df</span> <span class="o">=</span> <span class="n">create_supervised</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2_scaled&#39;</span><span class="p">],</span> <span class="n">n_lag</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">supervised_df</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">supervised_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            NO2(t-4)  NO2(t-3)  NO2(t-2)  NO2(t-1)    NO2(t)
+date                                                        
+2023-10-05  0.446936  0.398857  0.722477  0.763102  0.515276
+2023-10-06  0.398857  0.722477  0.763102  0.515276  0.653322
+2023-10-07  0.722477  0.763102  0.515276  0.653322  0.544880
+2023-10-08  0.763102  0.515276  0.653322  0.544880  0.419782
+2023-10-09  0.515276  0.653322  0.544880  0.419782  0.827080
+...              ...       ...       ...       ...       ...
+2025-09-26  0.278250  0.573422  0.484549  0.229511  0.372995
+2025-09-27  0.573422  0.484549  0.229511  0.372995  0.434784
+2025-09-28  0.484549  0.229511  0.372995  0.434784  0.262205
+2025-09-29  0.229511  0.372995  0.434784  0.262205  0.367300
+2025-09-30  0.372995  0.434784  0.262205  0.367300  0.364150
+
+[727 rows x 5 columns]
+(727, 5)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Untuk membuat data 10 hari sebelum tinggal tambah code dibawah (ubah parameter n_lag).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">supervised_df10</span> <span class="o">=</span> <span class="n">create_supervised</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2_scaled&#39;</span><span class="p">],</span> <span class="n">n_lag</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">supervised_df10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">supervised_df10</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            NO2(t-10)  NO2(t-9)  NO2(t-8)  NO2(t-7)  NO2(t-6)  NO2(t-5)  \
+date                                                                      
+2023-10-11   0.446936  0.398857  0.722477  0.763102  0.515276  0.653322   
+2023-10-12   0.398857  0.722477  0.763102  0.515276  0.653322  0.544880   
+2023-10-13   0.722477  0.763102  0.515276  0.653322  0.544880  0.419782   
+2023-10-14   0.763102  0.515276  0.653322  0.544880  0.419782  0.827080   
+2023-10-15   0.515276  0.653322  0.544880  0.419782  0.827080  0.684238   
+...               ...       ...       ...       ...       ...       ...   
+2025-09-26   0.294733  0.223919  0.170132  0.098560  0.236930  0.275472   
+2025-09-27   0.223919  0.170132  0.098560  0.236930  0.275472  0.278250   
+2025-09-28   0.170132  0.098560  0.236930  0.275472  0.278250  0.573422   
+2025-09-29   0.098560  0.236930  0.275472  0.278250  0.573422  0.484549   
+2025-09-30   0.236930  0.275472  0.278250  0.573422  0.484549  0.229511   
+
+            NO2(t-4)  NO2(t-3)  NO2(t-2)  NO2(t-1)    NO2(t)  
+date                                                          
+2023-10-11  0.544880  0.419782  0.827080  0.684238  0.604178  
+2023-10-12  0.419782  0.827080  0.684238  0.604178  0.633339  
+2023-10-13  0.827080  0.684238  0.604178  0.633339  0.662501  
+2023-10-14  0.684238  0.604178  0.633339  0.662501  0.700150  
+2023-10-15  0.604178  0.633339  0.662501  0.700150  0.432812  
+...              ...       ...       ...       ...       ...  
+2025-09-26  0.278250  0.573422  0.484549  0.229511  0.372995  
+2025-09-27  0.573422  0.484549  0.229511  0.372995  0.434784  
+2025-09-28  0.484549  0.229511  0.372995  0.434784  0.262205  
+2025-09-29  0.229511  0.372995  0.434784  0.262205  0.367300  
+2025-09-30  0.372995  0.434784  0.262205  0.367300  0.364150  
+
+[721 rows x 11 columns]
+(721, 11)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="modeling-dan-evaluation">
+<h3>Modeling dan Evaluation<a class="headerlink" href="#modeling-dan-evaluation" title="Link to this heading">#</a></h3>
+<p>Sekarang dari 2 data yang sudah kita rubah, kita train menggunakan model KNN Regression.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNeighborsRegressor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">train_knn</span><span class="p">(</span><span class="n">df_supervised</span><span class="p">,</span> <span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+    <span class="c1"># Pisahkan fitur dan label</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">df_supervised</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;NO2(t)&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">df_supervised</span><span class="p">[</span><span class="s1">&#39;NO2(t)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="c1"># Split data 80/20</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Model KNN Regressor</span>
+    <span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+    <span class="c1"># Prediksi</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+    <span class="c1"># Evaluasi</span>
+    <span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mse</span><span class="p">)</span>
+    <span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== </span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s2"> ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Train Size: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span><span class="si">}</span><span class="s2"> — Test Size: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RMSE: </span><span class="si">{</span><span class="n">rmse</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R² Score: </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">knn</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span>
+
+
+<span class="c1"># Train model untuk 4 hari sebelumnya</span>
+<span class="n">knn_4</span><span class="p">,</span> <span class="n">y_test_4</span><span class="p">,</span> <span class="n">y_pred_4</span> <span class="o">=</span> <span class="n">train_knn</span><span class="p">(</span><span class="n">supervised_df</span><span class="p">,</span> <span class="s2">&quot;KNN - 4 Hari Sebelumnya&quot;</span><span class="p">)</span>
+
+<span class="c1"># Train model untuk 10 hari sebelumnya</span>
+<span class="n">knn_10</span><span class="p">,</span> <span class="n">y_test_10</span><span class="p">,</span> <span class="n">y_pred_10</span> <span class="o">=</span> <span class="n">train_knn</span><span class="p">(</span><span class="n">supervised_df10</span><span class="p">,</span> <span class="s2">&quot;KNN - 10 Hari Sebelumnya&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== KNN - 4 Hari Sebelumnya ===
+Train Size: 581 — Test Size: 146
+RMSE: 0.077497
+R² Score: 0.2555
+
+=== KNN - 10 Hari Sebelumnya ===
+Train Size: 576 — Test Size: 145
+RMSE: 0.074581
+R² Score: 0.3147
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plotting">
+<h3>Plotting<a class="headerlink" href="#plotting" title="Link to this heading">#</a></h3>
+<p>Plotting untuk visualisasi grafik antara label dan prediksi dari kedua data diatas.</p>
+<p>4 hari sebelum:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test_4</span><span class="p">)),</span> <span class="n">y_test_4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Actual&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_pred_4</span><span class="p">)),</span> <span class="n">y_pred_4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Predicted&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;KNN Regression - 4 Hari Sebelumnya&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Sample Index&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;NO2 Value&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a2194af46ec2842f695628407c4bd0e790cd8344e33389055029f9603fa77505.png" src="../_images/a2194af46ec2842f695628407c4bd0e790cd8344e33389055029f9603fa77505.png" />
+</div>
+</div>
+<p>10 hari sebelum:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test_10</span><span class="p">)),</span> <span class="n">y_test_10</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Actual&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_pred_10</span><span class="p">)),</span> <span class="n">y_pred_10</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Predicted&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;KNN Regression - 10 Hari Sebelumnya&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Sample Index&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;NO2 Value&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4d3be7b731f1ae7393fcbe15c3e3de398f705d087cd3bece5b4cc5de2f9f5146.png" src="../_images/4d3be7b731f1ae7393fcbe15c3e3de398f705d087cd3bece5b4cc5de2f9f5146.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="kesimpulan">
+<h2>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Berdasarkan hasil pengujian model KNN Regression terhadap dua skenario jumlah fitur, yaitu 4 hari sebelumnya dan 10 hari sebelumnya, dapat disimpulkan bahwa penambahan jumlah fitur berupa lag harian tidak selalu meningkatkan kinerja model. Pada kasus data konsentrasi NO₂ di daerah Bojonegoro ini, model dengan 4 hari sebelumnya justru menunjukkan performa yang lebih baik dengan nilai RMSE lebih kecil dan R² yang lebih tinggi dibandingkan model dengan 10 hari sebelumnya. Hal ini mengindikasikan bahwa pola perubahan NO₂ lebih dipengaruhi oleh kondisi dalam beberapa hari terakhir, sehingga penambahan data historis yang terlalu jauh dapat menimbulkan noise dan mengurangi kemampuan model dalam mengenali pola. Selain itu, KNN merupakan metode berbasis kedekatan jarak yang cenderung mengalami penurunan performa ketika jumlah fitur bertambah karena curse of dimensionality. Dengan demikian, penggunaan 4 fitur (4 hari sebelumnya) lebih efektif dalam memodelkan data ini dibandingkan penggunaan 10 fitur.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tugas"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="linear-regresi.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tugas Linier Regression</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">Latar Belakang</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data">1. Pengumpulan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-data">2. Preprocessing Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-mengatasi-missing-value-menggunakan-metode-interpolasi-linear">a. Mengatasi Missing Value menggunakan metode Interpolasi Linear</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-rata-ratakan-data-dan-ubah-datetime">b. Rata-ratakan Data dan ubah Datetime</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-simpan-data-dalam-bentuk-csv">c. Simpan data dalam bentuk CSV</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-pengecekan-missing-value-data-harian-pada-csv">d. Pengecekan Missing Value data harian pada CSV</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-menggunakan-knn-regression">3. Modeling menggunakan KNN Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-normalisasi-data">a. Normalisasi Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-mengubah-data">b. Mengubah Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-dan-evaluation">Modeling dan Evaluation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting">Plotting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ahmad Hadi Nuryani
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
